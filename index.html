@@ -3,361 +3,673 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>VAYA | فايا</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html {
-    scroll-behavior: smooth;
+:root{
+    --black:#111;
+    --white:#fff;
+    --cream:#faf8f5;
+    --beige:#eee7df;
+    --gray:#777;
+    --border:#e5e0da;
+    --red:#c94c4c;
+    --gold:#a7865b;
 }
 
-body {
-    font-family: 'Montserrat', sans-serif;
-    background: #f7f4ee;
-    color: #111;
+body{
+    font-family:Cairo,sans-serif;
+    background:var(--cream);
+    color:var(--black);
+}
+
+button,input,select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
 }
 
 /* HEADER */
 
-header {
-    height: 80px;
-    padding: 0 6%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #f7f4ee;
-    border-bottom: 1px solid #ddd8cf;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+.top{
+    background:#111;
+    color:#fff;
+    text-align:center;
+    font-size:11px;
+    padding:8px;
 }
 
-.logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 40px;
-    letter-spacing: 8px;
-    text-decoration: none;
-    color: #111;
+header{
+    height:75px;
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 5%;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
-nav {
-    display: flex;
-    gap: 28px;
+.logo{
+    font-family:"Playfair Display",serif;
+    font-size:34px;
+    letter-spacing:7px;
+    text-decoration:none;
+    color:#111;
+    direction:ltr;
 }
 
-nav a {
-    text-decoration: none;
-    color: #111;
-    font-size: 10px;
-    letter-spacing: 2px;
+nav{
+    display:flex;
+    gap:27px;
 }
 
-.cart-button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 10px;
-    letter-spacing: 2px;
+nav button{
+    border:0;
+    background:none;
+    font-size:12px;
+}
+
+nav button:hover{
+    color:var(--gold);
+}
+
+.header-actions{
+    display:flex;
+    gap:8px;
+}
+
+.icon-btn{
+    background:white;
+    border:0;
+    padding:8px;
+    font-size:18px;
+}
+
+.badge{
+    background:#111;
+    color:#fff;
+    border-radius:50%;
+    font-size:9px;
+    padding:3px 6px;
 }
 
 /* HERO */
 
-.hero {
-    height: 82vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-
+.hero{
+    min-height:580px;
     background:
-    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
-    url("17715199f9cd9f8783823fa4fe479784.jpg");
-
-    background-size: cover;
-    background-position: center;
+    linear-gradient(rgba(0,0,0,.42),rgba(0,0,0,.42)),
+    url("https://picsum.photos/seed/vaya-fashion/1600/900");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    text-align:center;
 }
 
-.hero small {
-    letter-spacing: 5px;
-    font-size: 11px;
+.hero small{
+    letter-spacing:5px;
 }
 
-.hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(80px, 14vw, 160px);
-    letter-spacing: 18px;
-    font-weight: 500;
-    margin: 15px 0;
+.hero h1{
+    font-family:"Playfair Display",serif;
+    font-size:110px;
+    letter-spacing:18px;
+    font-weight:500;
+    direction:ltr;
 }
 
-.hero p {
-    font-size: 11px;
-    letter-spacing: 4px;
-    margin-bottom: 35px;
+.hero p{
+    margin:10px 0 25px;
 }
 
-.button {
-    display: inline-block;
-    padding: 16px 40px;
-    background: #f7f4ee;
-    color: #111;
-    text-decoration: none;
-    font-size: 10px;
-    letter-spacing: 3px;
+.hero button{
+    background:#fff;
+    border:0;
+    padding:15px 35px;
 }
 
 /* SECTIONS */
 
-section {
-    padding: 90px 6%;
+section{
+    padding:65px 5%;
 }
 
-.title {
-    text-align: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 52px;
-    font-weight: 500;
-    margin-bottom: 50px;
+.section-head{
+    text-align:center;
+    margin-bottom:35px;
 }
 
-/* COLLECTIONS */
-
-.collections {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+.section-head span{
+    color:var(--gold);
+    font-size:10px;
+    letter-spacing:3px;
 }
 
-.collection {
-    height: 420px;
-    display: flex;
-    align-items: flex-end;
-    padding: 30px;
-    color: white;
-    text-decoration: none;
-    background-size: cover;
-    background-position: center;
+.section-head h2{
+    font-family:"Playfair Display",serif;
+    font-size:42px;
+    font-weight:500;
 }
 
-.collection:nth-child(1) {
-    background-image: url("17715199f9cd9f8783823fa4fe479784.jpg");
+/* CATEGORIES */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:12px;
 }
 
-.collection:nth-child(2) {
-    background-image: url("a860a99bb1a05fa081cc163905c12a64.jpg");
+.cat{
+    height:220px;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
 }
 
-.collection:nth-child(3) {
-    background-image: url("809683343a7f114a540f45a26879faf3.jpg");
+.cat img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.4s;
 }
 
-.collection h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 38px;
-    font-weight: 500;
+.cat:hover img{
+    transform:scale(1.07);
+}
+
+.cat div{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:end;
+    justify-content:center;
+    padding:18px;
+    color:#fff;
+    font-size:15px;
+    background:linear-gradient(transparent,rgba(0,0,0,.65));
+}
+
+/* DEAL */
+
+.deal{
+    background:#111;
+    color:white;
+    text-align:center;
+}
+
+.deal h2{
+    font-family:"Playfair Display",serif;
+    font-size:48px;
+}
+
+.deal p{
+    color:#ccc;
 }
 
 /* PRODUCTS */
 
-.products {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+.shop{
+    background:#fff;
 }
 
-.product {
-    background: white;
+.tools{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
 }
 
-.product-image {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    overflow: hidden;
+.search{
+    width:300px;
+    max-width:100%;
+    padding:13px 16px;
+    border:1px solid var(--border);
+    outline:none;
 }
 
-.product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.filters{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
 }
 
-.product-info {
-    padding: 20px;
-    text-align: right;
+.filter{
+    background:#fff;
+    border:1px solid var(--border);
+    padding:10px 15px;
+    font-size:11px;
 }
 
-.product-info h3 {
-    font-size: 14px;
-    font-weight: 400;
+.filter.active,
+.filter:hover{
+    background:#111;
+    color:#fff;
 }
 
-.price {
-    display: block;
-    margin: 8px 0 15px;
-    font-size: 13px;
+.products{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
 }
 
-.size {
-    width: 100%;
-    padding: 12px;
-    background: white;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
+.card{
+    background:#fff;
+    position:relative;
 }
 
-.add-btn {
-    width: 100%;
-    padding: 14px;
-    background: #111;
-    color: white;
-    border: none;
-    cursor: pointer;
-    letter-spacing: 2px;
-    font-size: 10px;
+.card-img{
+    aspect-ratio:3/4;
+    overflow:hidden;
+    background:#eee;
+    cursor:pointer;
+    position:relative;
 }
 
-/* ABOUT */
-
-.about {
-    background: #111;
-    color: #f7f4ee;
-    text-align: center;
+.card-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
 }
 
-.about h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 60px;
-    font-weight: 400;
+.card:hover .card-img img{
+    transform:scale(1.04);
 }
 
-.about p {
-    max-width: 650px;
-    margin: 25px auto;
-    line-height: 2;
-    font-size: 13px;
-    color: #ccc;
+.heart{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:#fff;
+    border:0;
+    border-radius:50%;
+    width:35px;
+    height:35px;
+    z-index:2;
+    font-size:17px;
+}
+
+.heart.active{
+    color:var(--red);
+}
+
+.sale{
+    position:absolute;
+    right:8px;
+    top:8px;
+    background:var(--red);
+    color:#fff;
+    padding:4px 8px;
+    font-size:9px;
+}
+
+.info{
+    padding:12px 3px 18px;
+}
+
+.cat-name{
+    color:var(--gray);
+    font-size:9px;
+}
+
+.name{
+    font-size:13px;
+    margin-top:3px;
+}
+
+.rating{
+    font-size:10px;
+    margin-top:4px;
+}
+
+.price{
+    margin-top:5px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.old{
+    text-decoration:line-through;
+    color:#999;
+    font-size:10px;
+    margin-right:5px;
+}
+
+.add{
+    width:100%;
+    background:#111;
+    color:#fff;
+    border:0;
+    padding:11px;
+    margin-top:10px;
+    font-size:10px;
+}
+
+/* PRODUCT MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:3000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    background:#fff;
+    width:950px;
+    max-width:100%;
+    max-height:94vh;
+    overflow:auto;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    top:12px;
+    left:12px;
+    width:35px;
+    height:35px;
+    border:0;
+    border-radius:50%;
+    background:#fff;
+    z-index:10;
+    font-size:20px;
+}
+
+.product-detail{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+
+.detail-image{
+    min-height:650px;
+}
+
+.detail-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.detail-info{
+    padding:50px 35px;
+}
+
+.detail-info h2{
+    font-family:"Playfair Display",serif;
+    font-size:40px;
+}
+
+.detail-price{
+    font-size:20px;
+    margin:10px 0;
+}
+
+.description{
+    color:#777;
+    font-size:12px;
+    line-height:2;
+    margin:15px 0 25px;
+}
+
+.option-title{
+    font-size:11px;
+    margin:15px 0 7px;
+}
+
+.sizes{
+    display:flex;
+    gap:6px;
+}
+
+.size{
+    border:1px solid #ccc;
+    background:#fff;
+    padding:10px 15px;
+}
+
+.size.selected{
+    background:#111;
+    color:#fff;
+}
+
+.colors{
+    display:flex;
+    gap:7px;
+}
+
+.color{
+    border:1px solid #ccc;
+    padding:8px 14px;
+    background:#fff;
+}
+
+.quantity{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+}
+
+.add-detail{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:0;
+    background:#111;
+    color:#fff;
 }
 
 /* CART */
 
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.45);
-    display: none;
-    z-index: 200;
+.cart{
+    position:fixed;
+    top:0;
+    right:-450px;
+    width:430px;
+    max-width:100%;
+    height:100vh;
+    background:#fff;
+    z-index:4000;
+    transition:.3s;
+    padding:25px;
+    box-shadow:-10px 0 30px #0002;
 }
 
-.overlay.active {
-    display: block;
+.cart.show{
+    right:0;
 }
 
-.cart {
-    position: fixed;
-    top: 0;
-    right: -430px;
-    width: 420px;
-    max-width: 100%;
-    height: 100vh;
-    background: #f7f4ee;
-    z-index: 300;
-    transition: .4s;
-    padding: 30px;
+.cart-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #ddd;
+    padding-bottom:15px;
 }
 
-.cart.active {
-    right: 0;
+.cart-head h2{
+    font-family:"Playfair Display",serif;
 }
 
-.cart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 20px;
+.cart-items{
+    height:67vh;
+    overflow:auto;
 }
 
-.cart-header h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
+.cart-item{
+    display:grid;
+    grid-template-columns:70px 1fr 30px;
+    gap:10px;
+    padding:14px 0;
+    border-bottom:1px solid #eee;
 }
 
-.close {
-    border: none;
-    background: none;
-    font-size: 25px;
-    cursor: pointer;
+.cart-item img{
+    width:70px;
+    height:85px;
+    object-fit:cover;
 }
 
-.cart-items {
-    padding: 20px 0;
+.cart-item h4{
+    font-size:11px;
 }
 
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #ddd;
-    padding: 15px 0;
+.cart-item small{
+    color:#777;
+    font-size:9px;
 }
 
-.remove {
-    border: none;
-    background: none;
-    color: #777;
-    cursor: pointer;
-    font-size: 10px;
+.remove{
+    border:0;
+    background:none;
 }
 
-.total {
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
-    right: 30px;
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
+.cart-total{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+}
+
+.checkout{
+    width:100%;
+    padding:15px;
+    border:0;
+    background:#111;
+    color:#fff;
+}
+
+/* CHECKOUT */
+
+.checkout-page{
+    padding:35px;
+}
+
+.checkout-page h2{
+    font-family:"Playfair Display",serif;
+    font-size:38px;
+    margin-bottom:20px;
+}
+
+.form{
+    display:grid;
+    gap:13px;
+}
+
+.form label{
+    font-size:11px;
+}
+
+.form input,
+.form textarea,
+.form select{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    outline:none;
+}
+
+.form textarea{
+    min-height:90px;
+}
+
+.send{
+    background:#111;
+    color:#fff;
+    border:0;
+    padding:16px;
+    margin-top:10px;
 }
 
 /* FOOTER */
 
-footer {
-    background: #111;
-    color: #999;
-    text-align: center;
-    padding: 30px;
-    font-size: 10px;
+footer{
+    background:#111;
+    color:#aaa;
+    text-align:center;
+    padding:35px;
+    font-size:10px;
 }
 
 /* MOBILE */
 
-@media(max-width:800px) {
-
-    nav {
-        gap: 10px;
+@media(max-width:1000px){
+    .products{
+        grid-template-columns:repeat(3,1fr);
     }
 
-    nav a {
-        font-size: 7px;
+    .categories{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    header{
+        height:auto;
+        padding:12px 4%;
+        flex-wrap:wrap;
     }
 
-    .collections,
-    .products {
-        grid-template-columns: 1fr;
+    nav{
+        width:100%;
+        order:3;
+        justify-content:center;
+        gap:15px;
     }
 
-    .hero h1 {
-        font-size: 75px;
-        letter-spacing: 8px;
+    .hero{
+        min-height:500px;
+    }
+
+    .hero h1{
+        font-size:70px;
+        letter-spacing:8px;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
+    }
+
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .product-detail{
+        grid-template-columns:1fr;
+    }
+
+    .detail-image{
+        min-height:450px;
+    }
+
+    section{
+        padding:50px 4%;
     }
 }
 </style>
@@ -365,33 +677,31 @@ footer {
 
 <body>
 
+<div class="top">
+✨ توصيل داخل الأردن • الدفع عند الاستلام
+</div>
+
 <header>
 
-<a href="index.html" class="logo">
-VAYA
-</a>
+<a class="logo" href="#" onclick="home()">VAYA</a>
 
 <nav>
-
-<a href="index.html">الرئيسية</a>
-
-<a href="collections.html">
-الكولكشنات
-</a>
-
-<a href="#shop">
-المتجر
-</a>
-
-<a href="#about">
-عن فايا
-</a>
-
+<button onclick="home()">الرئيسية</button>
+<button onclick="showCategory('الكل')">تسوقي الآن</button>
+<button onclick="showCategory('جديد')">وصل حديثًا</button>
+<button onclick="showCategory('عروض')">العروض</button>
 </nav>
 
-<button class="cart-button" onclick="openCart()">
-السلة (<span id="count">0</span>)
+<div class="header-actions">
+
+<button class="icon-btn" onclick="openSearch()">⌕</button>
+
+<button class="icon-btn" onclick="openCart()">
+🛍️
+<span class="badge" id="cartCount">0</span>
 </button>
+
+</div>
 
 </header>
 
@@ -402,288 +712,277 @@ VAYA
 
 <div>
 
-<small>VAYA COLLECTION 01</small>
+<small>VAYA NEW COLLECTION</small>
 
 <h1>VAYA</h1>
 
-<p>
-أناقة • بساطة • حضور
-</p>
+<p>قطع تختارينها... وإطلالة تشبهك</p>
 
-<a href="#shop" class="button">
+<button onclick="shopNow()">
 تسوقي الآن
-</a>
+</button>
 
 </div>
 
 </section>
 
 
-<!-- COLLECTIONS -->
+<!-- CATEGORIES -->
 
 <section>
 
-<h2 class="title">
-الكولكشنات
-</h2>
+<div class="section-head">
+<span>SHOP BY CATEGORY</span>
+<h2>تسوقي حسب القسم</h2>
+</div>
 
-<div class="collections">
+<div class="categories">
 
-<a href="collections.html" class="collection">
-<h3>الجديد</h3>
-</a>
+<div class="cat" onclick="showCategory('فساتين')">
+<img src="https://picsum.photos/seed/vaya-dresses/600/800">
+<div>فساتين</div>
+</div>
 
-<a href="collections.html" class="collection">
-<h3>الأساسيات</h3>
-</a>
+<div class="cat" onclick="showCategory('قمصان')">
+<img src="https://picsum.photos/seed/vaya-shirts/600/800">
+<div>قمصان</div>
+</div>
 
-<a href="collections.html" class="collection">
-<h3>اختيارات فايا</h3>
-</a>
+<div class="cat" onclick="showCategory('بناطيل')">
+<img src="https://picsum.photos/seed/vaya-pants/600/800">
+<div>بناطيل</div>
+</div>
+
+<div class="cat" onclick="showCategory('اطقم')">
+<img src="https://picsum.photos/seed/vaya-sets/600/800">
+<div>أطقم</div>
+</div>
+
+<div class="cat" onclick="showCategory('جاكيتات')">
+<img src="https://picsum.photos/seed/vaya-jackets/600/800">
+<div>جاكيتات</div>
+</div>
+
+<div class="cat" onclick="showCategory('شنط')">
+<img src="https://picsum.photos/seed/vaya-bags/600/800">
+<div>شنط وإكسسوارات</div>
+</div>
 
 </div>
 
 </section>
 
 
-<!-- PRODUCTS -->
+<!-- DEAL -->
 
-<section id="shop">
+<section class="deal">
 
-<h2 class="title">
-منتجات فايا
-</h2>
+<span>VAYA SPECIAL</span>
 
-<div class="products">
+<h2>خصومات تصل إلى 30%</h2>
 
-
-<!-- البنطلون -->
-
-<div class="product">
-
-<div class="product-image">
-
-<img
-src="17715199f9cd9f8783823fa4fe479784.jpg"
-alt="بنطلون الطقم الرسمي">
-
-</div>
-
-<div class="product-info">
-
-<h3>
-بنطلون الطقم الرسمي
-</h3>
-
-<span class="price">
-10 د.أ
-</span>
-
-<select class="size">
-
-<option value="">
-اختاري المقاس
-</option>
-
-<option>XS</option>
-<option>S</option>
-<option>M</option>
-<option>L</option>
-<option>XL</option>
-
-</select>
-
-<button
-class="add-btn"
-onclick="addToCart('بنطلون الطقم الرسمي',10,this)">
-
-أضيفي للسلة
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- الجاكيت -->
-
-<div class="product">
-
-<div class="product-image">
-
-<img
-src="17715199f9cd9f8783823fa4fe479784.jpg"
-alt="جاكيت الطقم الرسمي">
-
-</div>
-
-<div class="product-info">
-
-<h3>
-جاكيت الطقم الرسمي
-</h3>
-
-<span class="price">
-15 د.أ
-</span>
-
-<select class="size">
-
-<option value="">
-اختاري المقاس
-</option>
-
-<option>XS</option>
-<option>S</option>
-<option>M</option>
-<option>L</option>
-<option>XL</option>
-
-</select>
-
-<button
-class="add-btn"
-onclick="addToCart('جاكيت الطقم الرسمي',15,this)">
-
-أضيفي للسلة
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- القميص -->
-
-<div class="product">
-
-<div class="product-image">
-
-<img
-src="17715199f9cd9f8783823fa4fe479784.jpg"
-alt="قميص الطقم الرسمي">
-
-</div>
-
-<div class="product-info">
-
-<h3>
-قميص الطقم الرسمي
-</h3>
-
-<span class="price">
-10 د.أ
-</span>
-
-<select class="size">
-
-<option value="">
-اختاري المقاس
-</option>
-
-<option>XS</option>
-<option>S</option>
-<option>M</option>
-<option>L</option>
-<option>XL</option>
-
-</select>
-
-<button
-class="add-btn"
-onclick="addToCart('قميص الطقم الرسمي',10,this)">
-
-أضيفي للسلة
-
-</button>
-
-</div>
-
-</div>
-
-
-</div>
+<p>على مجموعة مختارة لفترة محدودة</p>
 
 </section>
 
 
-<!-- ABOUT -->
+<!-- SHOP -->
 
-<section class="about" id="about">
+<section class="shop" id="shop">
 
-<h2>
-عن VAYA
-</h2>
+<div class="section-head">
+<span>VAYA STORE</span>
+<h2>كل المنتجات</h2>
+</div>
 
-<p>
+<div class="tools">
 
-VAYA هي مساحة تجمع بين الأناقة
-والبساطة والحضور.
+<input
+id="search"
+class="search"
+placeholder="ابحثي عن فستان، بنطلون، قميص..."
+oninput="render()">
 
-<br>
+<div class="filters">
 
-قطع مختارة بعناية لتكون جزءًا
-من أسلوبك الخاص.
+<button class="filter active" onclick="showCategory('الكل',this)">الكل</button>
+<button class="filter" onclick="showCategory('جديد',this)">وصل حديثًا</button>
+<button class="filter" onclick="showCategory('فساتين',this)">فساتين</button>
+<button class="filter" onclick="showCategory('قمصان',this)">قمصان</button>
+<button class="filter" onclick="showCategory('بناطيل',this)">بناطيل</button>
+<button class="filter" onclick="showCategory('اطقم',this)">أطقم</button>
+<button class="filter" onclick="showCategory('جاكيتات',this)">جاكيتات</button>
+<button class="filter" onclick="showCategory('شنط',this)">شنط</button>
+<button class="filter" onclick="showCategory('عروض',this)">عروض</button>
 
-</p>
+</div>
+
+</div>
+
+<div class="products" id="products"></div>
 
 </section>
 
 
 <footer>
-
-© 2026 VAYA — جميع الحقوق محفوظة
-
+VAYA © 2026 — أزياء بطابعك الخاص
 </footer>
 
 
-<!-- CART -->
+<!-- PRODUCT MODAL -->
 
-<div
-class="overlay"
-id="overlay"
-onclick="closeCart()">
+<div class="modal" id="productModal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeProduct()">×</button>
+
+<div class="product-detail">
+
+<div class="detail-image">
+<img id="detailImage">
 </div>
 
-<div
-class="cart"
-id="cart">
+<div class="detail-info">
 
-<div class="cart-header">
+<h2 id="detailName"></h2>
 
-<h2>
-سلة المشتريات
-</h2>
+<div id="detailPrice" class="detail-price"></div>
 
-<button
-class="close"
-onclick="closeCart()">
-×
+<div id="detailDescription" class="description"></div>
+
+<div class="option-title">المقاس</div>
+
+<div class="sizes">
+
+<button class="size" onclick="selectSize(this,'XS')">XS</button>
+<button class="size" onclick="selectSize(this,'S')">S</button>
+<button class="size" onclick="selectSize(this,'M')">M</button>
+<button class="size" onclick="selectSize(this,'L')">L</button>
+<button class="size" onclick="selectSize(this,'XL')">XL</button>
+
+</div>
+
+<div class="option-title">اللون</div>
+
+<div class="colors">
+
+<button class="color" onclick="selectColor(this,'أسود')">أسود</button>
+<button class="color" onclick="selectColor(this,'أبيض')">أبيض</button>
+<button class="color" onclick="selectColor(this,'بيج')">بيج</button>
+<button class="color" onclick="selectColor(this,'بني')">بني</button>
+
+</div>
+
+<div class="option-title">الكمية</div>
+
+<input
+id="quantity"
+class="quantity"
+type="number"
+min="1"
+value="1">
+
+<button class="add-detail" onclick="addToCart()">
+أضيفي للسلة
 </button>
 
 </div>
 
-<div
-class="cart-items"
-id="items">
-
-<p>
-السلة فارغة
-</p>
+</div>
 
 </div>
 
-<div class="total">
+</div>
 
-<strong>
-المجموع
-</strong>
+
+<!-- CART -->
+
+<div class="cart" id="cart">
+
+<div class="cart-head">
+
+<h2>سلة VAYA</h2>
+
+<button class="close" onclick="closeCart()">×</button>
+
+</div>
+
+<div class="cart-items" id="cartItems"></div>
+
+<div class="cart-total">
+
+<strong>المجموع</strong>
 
 <strong>
 <span id="total">0</span> د.أ
 </strong>
+
+</div>
+
+<button class="checkout" onclick="openCheckout()">
+إتمام الطلب
+</button>
+
+</div>
+
+
+<!-- CHECKOUT -->
+
+<div class="modal" id="checkoutModal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeCheckout()">×</button>
+
+<div class="checkout-page">
+
+<h2>إرسال الطلب</h2>
+
+<div class="form">
+
+<label>الاسم الكامل *</label>
+<input id="name" placeholder="الاسم">
+
+<label>رقم الهاتف *</label>
+<input id="phone" placeholder="07XXXXXXXX">
+
+<label>المحافظة *</label>
+
+<select id="city">
+
+<option value="">اختاري المحافظة</option>
+<option>إربد</option>
+<option>عمان</option>
+<option>الزرقاء</option>
+<option>المفرق</option>
+<option>جرش</option>
+<option>عجلون</option>
+<option>السلط</option>
+<option>مادبا</option>
+<option>الكرك</option>
+<option>الطفيلة</option>
+<option>معان</option>
+<option>العقبة</option>
+</select>
+
+<label>العنوان بالتفصيل *</label>
+
+<textarea id="address"
+placeholder="المنطقة، الشارع، رقم المبنى..."></textarea>
+
+<label>ملاحظات</label>
+
+<textarea id="notes"
+placeholder="أي ملاحظات إضافية"></textarea>
+
+<button class="send" onclick="sendOrder()">
+إرسال الطلب
+</button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -692,78 +991,427 @@ id="items">
 
 <script>
 
-let cart = [];
+/* =========================
+   PRODUCTS
+========================= */
+
+const products = [
+
+["فستان سهرة أسود","فساتين",39,"vaya1",true],
+["فستان بيج ناعم","فساتين",32,"vaya2",false],
+["فستان وردي أنيق","فساتين",35,"vaya3",true],
+["فستان صيفي أبيض","فساتين",29,"vaya4",false],
+["فستان ساتان بني","فساتين",42,"vaya5",true],
+["فستان طويل أسود","فساتين",37,"vaya6",false],
+["فستان كاجوال رمادي","فساتين",27,"vaya7",false],
+["فستان مناسبات زيتي","فساتين",44,"vaya8",true],
+
+["قميص أبيض كلاسيكي","قمصان",15,"vaya9",false],
+["قميص ساتان أسود","قمصان",18,"vaya10",true],
+["قميص بيج واسع","قمصان",16,"vaya11",false],
+["قميص مخطط عصري","قمصان",17,"vaya12",false],
+["قميص وردي ناعم","قمصان",14,"vaya13",true],
+["قميص كتان أبيض","قمصان",19,"vaya14",false],
+["بلوزة سوداء أنيقة","قمصان",13,"vaya15",false],
+["بلوزة أوف وايت","قمصان",15,"vaya16",true],
+
+["بنطلون رسمي أسود","بناطيل",20,"vaya17",false],
+["بنطلون واسع بيج","بناطيل",22,"vaya18",true],
+["جينز أزرق فاتح","بناطيل",19,"vaya19",false],
+["جينز واسع أسود","بناطيل",21,"vaya20",false],
+["بنطلون قماش بني","بناطيل",23,"vaya21",true],
+["بنطلون كارغو زيتي","بناطيل",24,"vaya22",false],
+["بنطلون أبيض واسع","بناطيل",20,"vaya23",false],
+["بنطلون رمادي كلاسيك","بناطيل",21,"vaya24",true],
+
+["طقم رسمي أسود","اطقم",49,"vaya25",true],
+["طقم بيج أنيق","اطقم",45,"vaya26",false],
+["طقم كاجوال رمادي","اطقم",39,"vaya27",false],
+["طقم صيفي أبيض","اطقم",37,"vaya28",true],
+["طقم بني فاخر","اطقم",52,"vaya29",false],
+["طقم وردي ناعم","اطقم",43,"vaya30",true],
+
+["جاكيت جلد أسود","جاكيتات",35,"vaya31",false],
+["جاكيت بيج","جاكيتات",32,"vaya32",true],
+["جاكيت جينز","جاكيتات",27,"vaya33",false],
+["بليزر أسود","جاكيتات",30,"vaya34",false],
+["بليزر أوف وايت","جاكيتات",34,"vaya35",true],
+["جاكيت بني","جاكيتات",36,"vaya36",false],
+
+["شنطة كتف سوداء","شنط",22,"vaya37",false],
+["شنطة بيج صغيرة","شنط",20,"vaya38",true],
+["شنطة بني كلاسيكية","شنط",25,"vaya39",false],
+["شنطة سهرة سوداء","شنط",18,"vaya40",true],
+["حزام بني أنيق","شنط",9,"vaya41",false],
+["محفظة سوداء","شنط",11,"vaya42",false],
+["نظارة شمسية عصرية","شنط",12,"vaya43",true],
+["إكسسوار ذهبي","شنط",8,"vaya44",false],
+
+["تنورة سوداء","بناطيل",18,"vaya45",false],
+["تنورة بيج","بناطيل",19,"vaya46",true],
+["شورت صيفي أبيض","بناطيل",14,"vaya47",false],
+["شورت جينز","بناطيل",15,"vaya48",false],
+["طقم تنورة أسود","اطقم",36,"vaya49",true],
+["طقم صيفي بيج","اطقم",34,"vaya50",false]
+
+].map((p,i)=>({
+
+id:i+1,
+name:p[0],
+category:p[1],
+price:p[2],
+seed:p[3],
+sale:p[4]
+
+}));
 
 
-function addToCart(name, price, button) {
+let currentCategory="الكل";
+let currentProduct=null;
+let selectedSize="M";
+let selectedColor="أسود";
 
-let product =
-button.closest(".product");
+let cart=JSON.parse(localStorage.getItem("vayaCart")||"[]");
 
-let size =
-product.querySelector(".size").value;
+let favorites=JSON.parse(localStorage.getItem("vayaFavorites")||"[]");
 
-if (!size) {
 
-alert("اختاري المقاس أولاً");
+/* =========================
+   IMAGE
+========================= */
 
-return;
+function image(product){
+
+return `https://picsum.photos/seed/${product.seed}/700/900`;
 
 }
 
-cart.push({
 
-name: name,
-price: price,
-size: size
+/* =========================
+   RENDER
+========================= */
+
+function render(){
+
+let search=document
+.getElementById("search")
+.value
+.toLowerCase();
+
+let list=products.filter(p=>{
+
+let categoryMatch=
+currentCategory==="الكل"
+||
+currentCategory==="جديد"
+||
+currentCategory==="عروض"
+||
+p.category===currentCategory;
+
+if(currentCategory==="جديد"){
+categoryMatch=p.id>30;
+}
+
+if(currentCategory==="عروض"){
+categoryMatch=p.sale;
+}
+
+return categoryMatch &&
+p.name.toLowerCase().includes(search);
 
 });
 
-updateCart();
+
+let html="";
+
+list.forEach(p=>{
+
+let fav=favorites.includes(p.id);
+
+let oldPrice=p.sale
+?Math.round(p.price*1.25)
+:null;
+
+html+=`
+
+<div class="card">
+
+<div class="card-img"
+onclick="openProduct(${p.id})">
+
+${p.sale?
+`<span class="sale">خصم</span>`:""}
+
+<button
+class="heart ${fav?"active":""}"
+onclick="event.stopPropagation();toggleFavorite(${p.id})">
+
+${fav?"♥":"♡"}
+
+</button>
+
+<img
+src="${image(p)}"
+alt="${p.name}"
+loading="lazy">
+
+</div>
+
+<div class="info">
+
+<div class="cat-name">${p.category}</div>
+
+<div class="name">${p.name}</div>
+
+<div class="rating">★★★★★</div>
+
+<div class="price">
+
+${p.price} د.أ
+
+${oldPrice?
+`<span class="old">${oldPrice} د.أ</span>`:""}
+
+</div>
+
+<button
+class="add"
+onclick="openProduct(${p.id})">
+
+اختيار المنتج
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("products").innerHTML=html;
+
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+function showCategory(category,btn){
+
+currentCategory=category;
+
+document
+.querySelectorAll(".filter")
+.forEach(x=>x.classList.remove("active"));
+
+if(btn)btn.classList.add("active");
+
+document
+.getElementById("shop")
+.scrollIntoView({behavior:"smooth"});
+
+render();
+
+}
+
+
+function shopNow(){
+
+showCategory("الكل");
+
+}
+
+
+/* =========================
+   PRODUCT
+========================= */
+
+function openProduct(id){
+
+currentProduct=
+products.find(p=>p.id===id);
+
+document
+.getElementById("detailImage")
+.src=image(currentProduct);
+
+document
+.getElementById("detailName")
+.innerText=currentProduct.name;
+
+document
+.getElementById("detailPrice")
+.innerText=currentProduct.price+" د.أ";
+
+document
+.getElementById("detailDescription")
+.innerText=
+"قطعة أنيقة من مجموعة VAYA. تصميم عصري سهل التنسيق ومناسب لإطلالاتك اليومية والمناسبات.";
+
+selectedSize="M";
+selectedColor="أسود";
+
+document
+.querySelectorAll(".size")
+.forEach(x=>x.classList.remove("selected"));
+
+document
+.querySelectorAll(".size")[2]
+.classList.add("selected");
+
+document
+.getElementById("quantity")
+.value=1;
+
+document
+.getElementById("productModal")
+.classList.add("show");
+
+}
+
+
+function closeProduct(){
+
+document
+.getElementById("productModal")
+.classList.remove("show");
+
+}
+
+
+function selectSize(btn,size){
+
+selectedSize=size;
+
+document
+.querySelectorAll(".size")
+.forEach(x=>x.classList.remove("selected"));
+
+btn.classList.add("selected");
+
+}
+
+
+function selectColor(btn,color){
+
+selectedColor=color;
+
+document
+.querySelectorAll(".color")
+.forEach(x=>x.style.background="#fff");
+
+btn.style.background="#eee";
+
+}
+
+
+/* =========================
+   FAVORITES
+========================= */
+
+function toggleFavorite(id){
+
+if(favorites.includes(id)){
+
+favorites=
+favorites.filter(x=>x!==id);
+
+}else{
+
+favorites.push(id);
+
+}
+
+localStorage.setItem(
+"vayaFavorites",
+JSON.stringify(favorites)
+);
+
+render();
+
+}
+
+
+/* =========================
+   CART
+========================= */
+
+function addToCart(){
+
+let quantity=
+Number(document.getElementById("quantity").value);
+
+if(quantity<1)quantity=1;
+
+for(let i=0;i<quantity;i++){
+
+cart.push({
+
+cartId:Date.now()+Math.random(),
+
+productId:currentProduct.id,
+
+name:currentProduct.name,
+
+price:currentProduct.price,
+
+size:selectedSize,
+
+color:selectedColor,
+
+image:image(currentProduct)
+
+});
+
+}
+
+saveCart();
+
+closeProduct();
 
 openCart();
 
 }
 
 
-function updateCart() {
+function saveCart(){
 
-document.getElementById("count").innerText =
-cart.length;
+localStorage.setItem(
+"vayaCart",
+JSON.stringify(cart)
+);
 
-let items =
-document.getElementById("items");
-
-let total = 0;
-
-items.innerHTML = "";
-
-if (cart.length === 0) {
-
-items.innerHTML =
-"<p>السلة فارغة</p>";
+updateCart();
 
 }
 
-cart.forEach(function(item,index) {
 
-total += item.price;
+function updateCart(){
 
-let div =
-document.createElement("div");
+document
+.getElementById("cartCount")
+.innerText=cart.length;
 
-div.className =
-"cart-item";
+let html="";
+let total=0;
 
-div.innerHTML = `
+cart.forEach(item=>{
+
+total+=item.price;
+
+html+=`
+
+<div class="cart-item">
+
+<img src="${item.image}">
 
 <div>
 
-<strong>
-${item.name}
-</strong>
-
-<br>
+<h4>${item.name}</h4>
 
 <small>
 المقاس: ${item.size}
@@ -771,65 +1419,233 @@ ${item.name}
 
 <br>
 
+<small>
+اللون: ${item.color}
+</small>
+
+<br>
+
+<small>
+${item.price} د.أ
+</small>
+
+</div>
+
 <button
 class="remove"
-onclick="removeItem(${index})">
+onclick="removeItem(${item.cartId})">
 
-حذف
+✕
 
 </button>
 
 </div>
 
-<strong>
-${item.price} د.أ
-</strong>
-
 `;
-
-items.appendChild(div);
 
 });
 
-document.getElementById("total").innerText =
-total;
+if(!cart.length){
+
+html=`
+<div style="text-align:center;padding:80px 10px;color:#777">
+السلة فارغة 🤍
+</div>
+`;
+
+}
+
+document.getElementById("cartItems").innerHTML=html;
+
+document.getElementById("total").innerText=total;
 
 }
 
 
-function removeItem(index) {
+function removeItem(id){
 
-cart.splice(index,1);
+cart=cart.filter(x=>x.cartId!==id);
+
+saveCart();
+
+}
+
+
+function openCart(){
+
+document
+.getElementById("cart")
+.classList.add("show");
 
 updateCart();
 
 }
 
 
-function openCart() {
+function closeCart(){
 
 document
 .getElementById("cart")
-.classList.add("active");
-
-document
-.getElementById("overlay")
-.classList.add("active");
+.classList.remove("show");
 
 }
 
 
-function closeCart() {
+/* =========================
+   CHECKOUT
+========================= */
 
-document
-.getElementById("cart")
-.classList.remove("active");
+function openCheckout(){
 
-document
-.getElementById("overlay")
-.classList.remove("active");
+if(!cart.length){
+
+alert("السلة فارغة 🤍");
+
+return;
 
 }
+
+closeCart();
+
+document
+.getElementById("checkoutModal")
+.classList.add("show");
+
+}
+
+
+function closeCheckout(){
+
+document
+.getElementById("checkoutModal")
+.classList.remove("show");
+
+}
+
+
+function sendOrder(){
+
+let name=
+document.getElementById("name").value.trim();
+
+let phone=
+document.getElementById("phone").value.trim();
+
+let city=
+document.getElementById("city").value;
+
+let address=
+document.getElementById("address").value.trim();
+
+let notes=
+document.getElementById("notes").value.trim();
+
+
+if(!name||!phone||!city||!address){
+
+alert("يرجى تعبئة البيانات المطلوبة 🤍");
+
+return;
+
+}
+
+
+let total=
+cart.reduce((sum,item)=>sum+item.price,0);
+
+
+let order={
+
+id:"VAYA-"+Date.now(),
+
+date:new Date().toLocaleString("ar-JO"),
+
+customer:{
+name,
+phone,
+city,
+address,
+notes
+},
+
+items:[...cart],
+
+total
+
+};
+
+
+let orders=
+JSON.parse(localStorage.getItem("vayaOrders")||"[]");
+
+orders.push(order);
+
+localStorage.setItem(
+"vayaOrders",
+JSON.stringify(orders)
+);
+
+
+cart=[];
+
+saveCart();
+
+
+document.getElementById("name").value="";
+document.getElementById("phone").value="";
+document.getElementById("city").value="";
+document.getElementById("address").value="";
+document.getElementById("notes").value="";
+
+
+closeCheckout();
+
+
+alert(
+"تم إرسال طلبك بنجاح 🤍\n\nرقم الطلب: "+order.id
+);
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function openSearch(){
+
+document
+.getElementById("search")
+.focus();
+
+document
+.getElementById("shop")
+.scrollIntoView({behavior:"smooth"});
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function home(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+render();
+
+updateCart();
 
 </script>
 
