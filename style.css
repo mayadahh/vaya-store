@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAYA | فايا</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="top-bar">
+  ✨ توصيل داخل الأردن • الدفع عند الاستلام
+</div>
+
+<header>
+  <a href="#" class="logo">VAYA</a>
+
+  <nav>
+    <button data-category="الكل">الرئيسية</button>
+    <button data-category="نساء">نساء</button>
+    <button data-category="رجال">رجال</button>
+    <button data-category="بنات">بنات</button>
+    <button data-category="أولاد">أولاد</button>
+    <button data-category="بيبي">بيبي</button>
+    <button data-category="أحذية">أحذية</button>
+    <button data-category="إكسسوارات">إكسسوارات</button>
+  </nav>
+
+  <div class="actions">
+    <button id="searchBtn">⌕</button>
+    <button id="wishlistBtn">♡ <span id="wishCount">0</span></button>
+    <button id="cartBtn">🛍 <span id="cartCount">0</span></button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-content">
+    <p>VAYA NEW COLLECTION</p>
+    <h1>VAYA</h1>
+    <span>أزياء لكل شخص، ولكل عمر، ولكل مناسبة.</span>
+    <button id="shopBtn">تسوقي الآن</button>
+  </div>
+</section>
+
+<section class="categories">
+  <div class="section-title">
+    <small>SHOP BY CATEGORY</small>
+    <h2>تسوقي حسب الفئة</h2>
+  </div>
+
+  <div class="category-grid">
+
+    <div class="category-card" data-category="نساء">
+      <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=80">
+      <span>نساء</span>
+    </div>
+
+    <div class="category-card" data-category="رجال">
+      <img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?auto=format&fit=crop&w=700&q=80">
+      <span>رجال</span>
+    </div>
+
+    <div class="category-card" data-category="بنات">
+      <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=700&q=80">
+      <span>بنات</span>
+    </div>
+
+    <div class="category-card" data-category="أولاد">
+      <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=700&q=80">
+      <span>أولاد</span>
+    </div>
+
+    <div class="category-card" data-category="بيبي">
+      <img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=700&q=80">
+      <span>بيبي</span>
+    </div>
+
+    <div class="category-card" data-category="أحذية">
+      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80">
+      <span>أحذية</span>
+    </div>
+
+    <div class="category-card" data-category="إكسسوارات">
+      <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=80">
+      <span>إكسسوارات</span>
+    </div>
+
+  </div>
+</section>
+
+<section class="deals">
+  <div>
+    <small>VAYA SPECIAL</small>
+    <h2>عروض تصل إلى 40%</h2>
+    <p>اختاري إطلالتك بسعر أجمل.</p>
+  </div>
+</section>
+
+<section class="shop" id="shop">
+
+  <div class="section-title">
+    <small>VAYA STORE</small>
+    <h2 id="productsTitle">كل المنتجات</h2>
+  </div>
+
+  <div class="tools">
+
+    <div class="search-box">
+      <input id="searchInput" type="text" placeholder="ابحثي عن فستان، حذاء، قميص...">
+      <button id="clearSearch">×</button>
+    </div>
+
+    <select id="sortSelect">
+      <option value="default">ترتيب المنتجات</option>
+      <option value="low">السعر: الأقل أولًا</option>
+      <option value="high">السعر: الأعلى أولًا</option>
+      <option value="discount">الأعلى خصمًا</option>
+    </select>
+
+  </div>
+
+  <div class="filters">
+    <button class="filter active" data-category="الكل">الكل</button>
+    <button class="filter" data-category="نساء">نساء</button>
+    <button class="filter" data-category="رجال">رجال</button>
+    <button class="filter" data-category="بنات">بنات</button>
+    <button class="filter" data-category="أولاد">أولاد</button>
+    <button class="filter" data-category="بيبي">بيبي</button>
+    <button class="filter" data-category="أحذية">أحذية</button>
+    <button class="filter" data-category="إكسسوارات">إكسسوارات</button>
+    <button class="filter" data-category="عروض">العروض</button>
+  </div>
+
+  <div id="products" class="products"></div>
+
+</section>
+
+</main>
+
+<footer>
+  <h2>VAYA</h2>
+  <p>أزياء لكل شخص، ولكل عمر.</p>
+  <span>© 2026 VAYA</span>
+</footer>
+
+<!-- PRODUCT MODAL -->
+
+<div id="productModal" class="modal">
+  <div class="modal-box product-modal">
+
+    <button class="close" id="closeProduct">×</button>
+
+    <div class="product-detail">
+
+      <div class="detail-image">
+        <img id="detailImage">
+      </div>
+
+      <div class="detail-info">
+
+        <small id="detailCategory"></small>
+
+        <h2 id="detailName"></h2>
+
+        <div id="detailRating">★★★★★</div>
+
+        <div class="detail-price">
+          <strong id="detailPrice"></strong>
+          <del id="detailOldPrice"></del>
+        </div>
+
+        <p id="detailDescription"></p>
+
+        <label>المقاس</label>
+
+        <div id="sizes" class="sizes"></div>
+
+        <label>اللون</label>
+
+        <div id="colors" class="colors"></div>
+
+        <label>الكمية</label>
+        <input id="quantity" type="number" min="1" value="1">
+
+        <button id="addToCart" class="primary-btn">
+          أضيفي إلى السلة
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CART -->
+
+<aside id="cartPanel" class="side-panel">
+
+  <div class="panel-header">
+    <h2>سلة VAYA</h2>
+    <button id="closeCart">×</button>
+  </div>
+
+  <div id="cartItems" class="cart-items"></div>
+
+  <div class="cart-bottom">
+    <div>
+      <span>المجموع</span>
+      <strong><span id="cartTotal">0</span> د.أ</strong>
+    </div>
+
+    <button id="checkoutBtn" class="primary-btn">
+      إتمام الطلب
+    </button>
+  </div>
+
+</aside>
+
+<!-- WISHLIST -->
+
+<aside id="wishlistPanel" class="side-panel">
+
+  <div class="panel-header">
+    <h2>المفضلة ♡</h2>
+    <button id="closeWishlist">×</button>
+  </div>
+
+  <div id="wishlistItems" class="cart-items"></div>
+
+</aside>
+
+<!-- CHECKOUT -->
+
+<div id="checkoutModal" class="modal">
+
+  <div class="modal-box checkout-box">
+
+    <button class="close" id="closeCheckout">×</button>
+
+    <h2>إرسال الطلب</h2>
+
+    <form id="checkoutForm">
+
+      <label>الاسم الكامل *</label>
+      <input id="customerName" required>
+
+      <label>رقم الهاتف *</label>
+      <input id="customerPhone" placeholder="07XXXXXXXX" required>
+
+      <label>المحافظة *</label>
+
+      <select id="governorate" required>
+        <option value="">اختاري المحافظة</option>
+        <option>إربد</option>
+        <option>عمان</option>
+        <option>الزرقاء</option>
+        <option>المفرق</option>
+        <option>جرش</option>
+        <option>عجلون</option>
+        <option>السلط</option>
+        <option>مادبا</option>
+        <option>الكرك</option>
+        <option>الطفيلة</option>
+        <option>معان</option>
+        <option>العقبة</option>
+      </select>
+
+      <label>العنوان بالتفصيل *</label>
+      <textarea id="customerAddress" required></textarea>
+
+      <label>ملاحظات</label>
+      <textarea id="customerNotes"></textarea>
+
+      <div class="order-total">
+        المجموع:
+        <strong><span id="checkoutTotal">0</span> د.أ</strong>
+      </div>
+
+      <button class="primary-btn" type="submit">
+        إرسال الطلب
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
