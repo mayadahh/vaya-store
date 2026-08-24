@@ -25,10 +25,6 @@ body {
     color: #111;
 }
 
-body.no-scroll {
-    overflow: hidden;
-}
-
 /* HEADER */
 
 header {
@@ -68,7 +64,7 @@ nav a:hover {
 }
 
 .cart-button {
-    border: 0;
+    border: none;
     background: transparent;
     cursor: pointer;
     font-size: 10px;
@@ -242,10 +238,6 @@ section {
     font-size: 9px;
 }
 
-.add-btn:hover {
-    background: #a78a55;
-}
-
 /* ABOUT */
 
 .about {
@@ -299,10 +291,9 @@ section {
     border: none;
     background: #111;
     color: white;
-    cursor: pointer;
 }
 
-/* CART OVERLAY */
+/* CART */
 
 .cart-overlay {
     position: fixed;
@@ -318,8 +309,6 @@ section {
     opacity: 1;
     visibility: visible;
 }
-
-/* CART */
 
 .cart {
     position: fixed;
@@ -454,7 +443,6 @@ footer {
 @media (max-width: 600px) {
 
     header {
-        height: 68px;
         padding: 0 5%;
     }
 
@@ -463,7 +451,11 @@ footer {
     }
 
     nav {
-        display: none;
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 7px;
     }
 
     .hero {
@@ -488,7 +480,6 @@ footer {
     }
 
     .products {
-        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
 
@@ -508,19 +499,6 @@ footer {
     .about h2 {
         font-size: 45px;
     }
-
-    .subscribe {
-        display: block;
-    }
-
-    .subscribe input {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .subscribe button {
-        width: 100%;
-    }
 }
 </style>
 </head>
@@ -529,13 +507,24 @@ footer {
 
 <header>
 
-    <div class="logo">VAYA</div>
+    <a href="index.html" class="logo" style="text-decoration:none;color:#111;">
+        VAYA
+    </a>
 
     <nav>
-        <a href="#">HOME</a>
-        <a href="#collections">COLLECTIONS</a>
-        <a href="#shop">SHOP</a>
-        <a href="#about">ABOUT</a>
+        <a href="index.html">HOME</a>
+
+        <a href="collections.html">
+            COLLECTIONS
+        </a>
+
+        <a href="#shop">
+            SHOP
+        </a>
+
+        <a href="#about">
+            ABOUT
+        </a>
     </nav>
 
     <button class="cart-button" onclick="openCart()">
@@ -544,6 +533,8 @@ footer {
 
 </header>
 
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -555,39 +546,55 @@ footer {
 
         <p>VISION • AESTHETIC • YOU • ATTITUDE</p>
 
-        <a href="#shop" class="button">SHOP NOW</a>
+        <a href="#shop" class="button">
+            SHOP NOW
+        </a>
 
     </div>
 
 </section>
 
 
-<section id="collections">
+<!-- COLLECTIONS PREVIEW -->
 
-    <h2 class="title">THE COLLECTION</h2>
+<section>
+
+    <h2 class="title">
+        THE COLLECTION
+    </h2>
 
     <div class="collections">
 
-        <div class="collection new">
+        <a href="collections.html"
+           class="collection new"
+           style="text-decoration:none;">
             <h3>NEW IN</h3>
-        </div>
+        </a>
 
-        <div class="collection essential">
+        <a href="collections.html"
+           class="collection essential"
+           style="text-decoration:none;">
             <h3>ESSENTIALS</h3>
-        </div>
+        </a>
 
-        <div class="collection edit">
+        <a href="collections.html"
+           class="collection edit"
+           style="text-decoration:none;">
             <h3>THE EDIT</h3>
-        </div>
+        </a>
 
     </div>
 
 </section>
 
 
+<!-- PRODUCTS -->
+
 <section id="shop">
 
-    <h2 class="title">NEW ARRIVALS</h2>
+    <h2 class="title">
+        NEW ARRIVALS
+    </h2>
 
     <div class="products">
 
@@ -602,7 +609,9 @@ footer {
 
                 <h3>VAYA Essential Dress</h3>
 
-                <span class="price">29 JD</span>
+                <span class="price">
+                    29 JD
+                </span>
 
                 <select class="size">
                     <option value="">SELECT SIZE</option>
@@ -633,7 +642,9 @@ footer {
 
                 <h3>Classic VAYA Top</h3>
 
-                <span class="price">18 JD</span>
+                <span class="price">
+                    18 JD
+                </span>
 
                 <select class="size">
                     <option value="">SELECT SIZE</option>
@@ -664,7 +675,9 @@ footer {
 
                 <h3>VAYA Everyday Set</h3>
 
-                <span class="price">32 JD</span>
+                <span class="price">
+                    32 JD
+                </span>
 
                 <select class="size">
                     <option value="">SELECT SIZE</option>
@@ -695,7 +708,9 @@ footer {
 
                 <h3>VAYA Statement Look</h3>
 
-                <span class="price">35 JD</span>
+                <span class="price">
+                    35 JD
+                </span>
 
                 <select class="size">
                     <option value="">SELECT SIZE</option>
@@ -720,9 +735,13 @@ footer {
 </section>
 
 
+<!-- ABOUT -->
+
 <section class="about" id="about">
 
-    <h2>ABOUT VAYA</h2>
+    <h2>
+        ABOUT VAYA
+    </h2>
 
     <p>
         VAYA is more than fashion.
@@ -738,9 +757,13 @@ footer {
 </section>
 
 
+<!-- NEWSLETTER -->
+
 <section class="newsletter">
 
-    <h2 class="title">JOIN VAYA</h2>
+    <h2 class="title">
+        JOIN VAYA
+    </h2>
 
     <p>
         Be the first to discover our new drops.
@@ -748,9 +771,13 @@ footer {
 
     <div class="subscribe">
 
-        <input type="email" placeholder="Your email address">
+        <input
+            type="email"
+            placeholder="Your email address">
 
-        <button>JOIN</button>
+        <button>
+            JOIN
+        </button>
 
     </div>
 
@@ -764,23 +791,37 @@ footer {
 </footer>
 
 
-<!-- CART -->
+<!-- CART OVERLAY -->
 
-<div class="cart-overlay" id="overlay" onclick="closeCart()"></div>
+<div
+    class="cart-overlay"
+    id="overlay"
+    onclick="closeCart()">
+</div>
+
+
+<!-- CART -->
 
 <div class="cart" id="cart">
 
     <div class="cart-header">
 
-        <h2>Your Bag</h2>
+        <h2>
+            Your Bag
+        </h2>
 
-        <button class="close-cart" onclick="closeCart()">
+        <button
+            class="close-cart"
+            onclick="closeCart()">
             ×
         </button>
 
     </div>
 
-    <div class="cart-items" id="cartItems">
+
+    <div
+        class="cart-items"
+        id="cartItems">
 
         <div class="empty">
             Your bag is empty.
@@ -788,11 +829,14 @@ footer {
 
     </div>
 
+
     <div class="cart-bottom">
 
         <div class="cart-total">
 
-            <span>TOTAL</span>
+            <span>
+                TOTAL
+            </span>
 
             <strong>
                 <span id="cartTotal">0</span> JD
@@ -800,7 +844,9 @@ footer {
 
         </div>
 
-        <button class="checkout" onclick="checkout()">
+        <button
+            class="checkout"
+            onclick="checkout()">
             CHECKOUT
         </button>
 
@@ -816,16 +862,15 @@ let cart = [];
 
 function addToCart(name, price, button) {
 
-    let productCard = button.closest(".product");
+    const product = button.closest(".product");
 
-    let size = productCard.querySelector(".size").value;
+    const size = product.querySelector(".size").value;
 
-    if (size === "") {
+    if (!size) {
 
         alert("Please select a size.");
 
         return;
-
     }
 
     cart.push({
@@ -848,9 +893,11 @@ function addToCart(name, price, button) {
 
 function updateCart() {
 
-    document.getElementById("cartCount").innerText = cart.length;
+    document.getElementById("cartCount").innerText =
+        cart.length;
 
-    let container = document.getElementById("cartItems");
+    const container =
+        document.getElementById("cartItems");
 
     let total = 0;
 
@@ -867,12 +914,14 @@ function updateCart() {
 
             total += item.price;
 
-            let div = document.createElement("div");
+            const div =
+                document.createElement("div");
 
             div.className = "cart-item";
 
             div.innerHTML = `
                 <div>
+
                     <div class="cart-item-name">
                         ${item.name}
                     </div>
@@ -886,6 +935,7 @@ function updateCart() {
                         onclick="removeItem(${index})">
                         REMOVE
                     </button>
+
                 </div>
 
                 <div class="cart-item-price">
@@ -894,12 +944,11 @@ function updateCart() {
             `;
 
             container.appendChild(div);
-
         });
-
     }
 
-    document.getElementById("cartTotal").innerText = total;
+    document.getElementById("cartTotal").innerText =
+        total;
 }
 
 
@@ -913,21 +962,25 @@ function removeItem(index) {
 
 function openCart() {
 
-    document.getElementById("cart").classList.add("active");
+    document
+        .getElementById("cart")
+        .classList.add("active");
 
-    document.getElementById("overlay").classList.add("active");
-
-    document.body.classList.add("no-scroll");
+    document
+        .getElementById("overlay")
+        .classList.add("active");
 }
 
 
 function closeCart() {
 
-    document.getElementById("cart").classList.remove("active");
+    document
+        .getElementById("cart")
+        .classList.remove("active");
 
-    document.getElementById("overlay").classList.remove("active");
-
-    document.body.classList.remove("no-scroll");
+    document
+        .getElementById("overlay")
+        .classList.remove("active");
 }
 
 
@@ -938,11 +991,10 @@ function checkout() {
         alert("Your bag is empty.");
 
         return;
-
     }
 
     alert(
-        "Thank you for shopping with VAYA.\n\n" +
+        "Thank you for shopping with VAYA!\n\n" +
         "Checkout will be available soon."
     );
 }
