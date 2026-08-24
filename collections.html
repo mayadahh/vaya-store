@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VAYA | Collections</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f5f2ec;
+    color: #111;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    height: 78px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd8cf;
+}
+
+.logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    letter-spacing: 8px;
+}
+
+nav {
+    display: flex;
+    gap: 28px;
+}
+
+nav a {
+    color: #111;
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+nav a:hover {
+    color: #a78a55;
+}
+
+.page-title {
+    text-align: center;
+    padding: 80px 20px 50px;
+}
+
+.page-title small {
+    letter-spacing: 4px;
+    font-size: 10px;
+}
+
+.page-title h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 70px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.collections {
+    padding: 0 6% 90px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.collection {
+    height: 500px;
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.collection::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,.7));
+}
+
+.collection h2 {
+    position: relative;
+    z-index: 2;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 500;
+}
+
+.new {
+    background-image: url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85");
+}
+
+.essentials {
+    background-image: url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=85");
+}
+
+.edit {
+    background-image: url("https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85");
+}
+
+@media (max-width: 800px) {
+
+    .collections {
+        grid-template-columns: 1fr;
+    }
+
+    .collection {
+        height: 400px;
+    }
+
+    .page-title h1 {
+        font-size: 55px;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">VAYA</div>
+
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="collections.html">COLLECTIONS</a>
+        <a href="index.html#shop">SHOP</a>
+    </nav>
+
+</header>
+
+
+<div class="page-title">
+
+    <small>DISCOVER VAYA</small>
+
+    <h1>Collections</h1>
+
+</div>
+
+
+<div class="collections">
+
+    <div class="collection new">
+        <h2>NEW IN</h2>
+    </div>
+
+    <div class="collection essentials">
+        <h2>ESSENTIALS</h2>
+    </div>
+
+    <div class="collection edit">
+        <h2>THE EDIT</h2>
+    </div>
+
+</div>
+
+</body>
+</html>
