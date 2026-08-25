@@ -1,160 +1,1555 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VAYA — Fashion Store</title>
-  <meta name="description" content="VAYA — متجر أزياء عصري للنساء والرجال والأطفال.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VAYA | Casual Store</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#fff;
+  color:#111;
+}
+
+/* HEADER */
+header{
+  height:75px;
+  padding:0 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #eee;
+  position:sticky;
+  top:0;
+  background:#fff;
+  z-index:100;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:5px;
+}
+
+nav{
+  display:flex;
+  gap:28px;
+}
+
+nav a{
+  color:#111;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.header-actions{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.icon-btn{
+  border:0;
+  background:none;
+  cursor:pointer;
+  font-size:17px;
+}
+
+/* HERO */
+.hero{
+  min-height:620px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.18)),
+    linear-gradient(135deg,#ddd,#f4f4f4);
+  padding:40px 20px;
+}
+
+.hero-content{
+  max-width:800px;
+}
+
+.hero-small{
+  font-size:13px;
+  letter-spacing:3px;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:clamp(48px,9vw,100px);
+  line-height:.95;
+  letter-spacing:-5px;
+  margin-bottom:25px;
+}
+
+.hero p{
+  font-size:18px;
+  margin-bottom:30px;
+}
+
+.black-btn{
+  display:inline-block;
+  background:#111;
+  color:#fff;
+  padding:15px 35px;
+  text-decoration:none;
+  border:1px solid #111;
+  cursor:pointer;
+}
+
+.black-btn:hover{
+  background:#fff;
+  color:#111;
+}
+
+/* SECTIONS */
+.section{
+  padding:70px 6%;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:30px;
+}
+
+.section-head h2{
+  font-size:30px;
+}
+
+.section-head span{
+  color:#777;
+  font-size:13px;
+}
+
+/* CATEGORIES */
+.categories{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.category{
+  height:150px;
+  background:#f2f2f2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.category:hover{
+  background:#111;
+  color:#fff;
+}
+
+/* SEARCH */
+.search-area{
+  margin-bottom:35px;
+}
+
+.search-area input{
+  width:100%;
+  padding:17px;
+  border:1px solid #ddd;
+  outline:none;
+  font-size:15px;
+}
+
+/* FILTERS */
+.filters{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:30px;
+}
+
+.filter{
+  border:1px solid #ddd;
+  background:#fff;
+  padding:10px 18px;
+  cursor:pointer;
+}
+
+.filter.active,
+.filter:hover{
+  background:#111;
+  color:#fff;
+}
+
+/* PRODUCTS */
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
+}
+
+.product{
+  position:relative;
+  cursor:pointer;
+}
+
+.product-image{
+  height:330px;
+  background:#f1f1f1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:85px;
+  overflow:hidden;
+}
+
+.product-image div{
+  transition:.3s;
+}
+
+.product:hover .product-image div{
+  transform:scale(1.08);
+}
+
+.badge{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:#111;
+  color:#fff;
+  padding:6px 10px;
+  font-size:11px;
+  z-index:2;
+}
+
+.favorite{
+  position:absolute;
+  top:12px;
+  left:12px;
+  border:0;
+  background:#fff;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  cursor:pointer;
+  z-index:2;
+}
+
+.product-info{
+  padding:15px 3px 25px;
+}
+
+.product-name{
+  font-size:15px;
+  margin-bottom:8px;
+}
+
+.product-category{
+  color:#888;
+  font-size:12px;
+  margin-bottom:8px;
+}
+
+.price{
+  font-weight:bold;
+}
+
+.old-price{
+  color:#999;
+  text-decoration:line-through;
+  font-size:12px;
+  margin-right:8px;
+}
+
+/* PROMO */
+.promo{
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:80px 20px;
+}
+
+.promo h2{
+  font-size:50px;
+  margin-bottom:15px;
+}
+
+.promo p{
+  color:#ccc;
+  margin-bottom:25px;
+}
+
+.white-btn{
+  display:inline-block;
+  background:#fff;
+  color:#111;
+  padding:14px 30px;
+  text-decoration:none;
+}
+
+/* CART */
+.cart-panel{
+  position:fixed;
+  top:0;
+  left:-420px;
+  width:390px;
+  max-width:90%;
+  height:100vh;
+  background:#fff;
+  z-index:300;
+  box-shadow:0 0 30px rgba(0,0,0,.15);
+  transition:.3s;
+  padding:25px;
+  overflow-y:auto;
+}
+
+.cart-panel.open{
+  left:0;
+}
+
+.cart-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.close{
+  border:0;
+  background:none;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid #eee;
+  padding:15px 0;
+  gap:10px;
+}
+
+.cart-total{
+  margin-top:30px;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.whatsapp{
+  display:block;
+  text-align:center;
+  background:#111;
+  color:#fff;
+  padding:15px;
+  margin-top:20px;
+  cursor:pointer;
+}
+
+/* AI BUTTON */
+.ai-button{
+  position:fixed;
+  bottom:25px;
+  left:25px;
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  border:0;
+  background:#111;
+  color:#fff;
+  font-size:25px;
+  cursor:pointer;
+  z-index:250;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+/* AI CHAT */
+.ai-box{
+  position:fixed;
+  bottom:100px;
+  left:25px;
+  width:350px;
+  max-width:90%;
+  height:500px;
+  background:#fff;
+  border:1px solid #ddd;
+  box-shadow:0 10px 40px rgba(0,0,0,.2);
+  z-index:240;
+  display:none;
+  flex-direction:column;
+}
+
+.ai-box.open{
+  display:flex;
+}
+
+.ai-header{
+  background:#111;
+  color:#fff;
+  padding:18px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.ai-messages{
+  flex:1;
+  padding:15px;
+  overflow-y:auto;
+}
+
+.message{
+  padding:11px 13px;
+  margin-bottom:10px;
+  max-width:85%;
+  line-height:1.5;
+  font-size:13px;
+}
+
+.bot{
+  background:#f1f1f1;
+  margin-right:auto;
+}
+
+.user{
+  background:#111;
+  color:#fff;
+  margin-left:auto;
+}
+
+.ai-options{
+  padding:10px;
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  border-top:1px solid #eee;
+}
+
+.ai-option{
+  background:#fff;
+  border:1px solid #ddd;
+  padding:8px;
+  font-size:11px;
+  cursor:pointer;
+}
+
+.ai-input{
+  display:flex;
+  border-top:1px solid #eee;
+}
+
+.ai-input input{
+  flex:1;
+  padding:14px;
+  border:0;
+  outline:none;
+}
+
+.ai-input button{
+  width:55px;
+  border:0;
+  background:#111;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  border-top:1px solid #eee;
+  padding:50px 6%;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+footer h3{
+  margin-bottom:15px;
+}
+
+footer p{
+  color:#777;
+  font-size:13px;
+  line-height:2;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  nav{
+    display:none;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .categories{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .product-image{
+    height:260px;
+  }
+}
+
+@media(max-width:600px){
+
+  header{
+    padding:0 5%;
+  }
+
+  .logo{
+    font-size:23px;
+  }
+
+  .hero{
+    min-height:500px;
+  }
+
+  .hero h1{
+    letter-spacing:-3px;
+  }
+
+  .section{
+    padding:50px 5%;
+  }
+
+  .products{
+    gap:12px;
+  }
+
+  .product-image{
+    height:220px;
+    font-size:60px;
+  }
+
+  .promo h2{
+    font-size:38px;
+  }
+
+  .ai-box{
+    left:5%;
+    width:90%;
+  }
+
+  footer{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
+
 <body>
-  <div class="announcement">شحن مجاني للطلبات فوق 50 د.أ <span>✦</span> تشكيلة VAYA الجديدة وصلت</div>
 
-  <header class="header">
-    <div class="nav container">
-      <button class="mobile-menu" id="mobileMenu" aria-label="القائمة">☰</button>
-      <a class="brand" href="#home">VAYA</a>
-      <nav id="navLinks">
-        <a href="#home">الرئيسية</a>
-        <a href="#shop">المتجر</a>
-        <a href="#categories">الأقسام</a>
-        <a href="#new">وصل حديثًا</a>
-        <a href="#offers">العروض</a>
-      </nav>
-      <div class="actions">
-        <button id="searchBtn" class="icon" aria-label="بحث">⌕</button>
-        <button id="favoritesBtn" class="icon" aria-label="المفضلة">♡<b id="favCount">0</b></button>
-        <button id="cartBtn" class="icon" aria-label="السلة">🛍<b id="cartCount">0</b></button>
-      </div>
-    </div>
-    <div class="searchbar" id="searchbar">
-      <div class="container search-inner">
-        <input id="searchInput" type="search" placeholder="ابحثي عن فستان، بليزر، حذاء...">
-        <button id="clearSearch">مسح</button>
-      </div>
-    </div>
-  </header>
+<header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-copy">
-        <p class="eyebrow">VAYA / NEW SEASON</p>
-        <h1>أسلوبكِ.<br><em>بطريقتكِ.</em></h1>
-        <p class="hero-desc">قطع مختارة بعناية تجمع بين البساطة، الأناقة، واللمسة العصرية لكل يوم وكل مناسبة.</p>
-        <div class="hero-buttons">
-          <button class="btn dark" data-scroll="#shop">تسوّقي الآن</button>
-          <button class="btn light" data-scroll="#categories">استكشفي الأقسام</button>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-badge">VAYA<br><small>EST. 2026</small></div>
-      </div>
-    </section>
+  <div class="logo">VAYA</div>
 
-    <section class="section" id="categories">
-      <div class="section-head">
-        <div><p class="eyebrow">SHOP BY CATEGORY</p><h2>اختاري عالمك</h2></div>
-        <p>كل قسم مرتب بمنتجاته الخاصة، لتوصلي للي بدك إياه بسرعة.</p>
-      </div>
-      <div class="category-grid">
-        <button class="category-card women" data-category="women"><span>WOMEN</span><strong>نسائي</strong></button>
-        <button class="category-card men" data-category="men"><span>MEN</span><strong>رجالي</strong></button>
-        <button class="category-card girls" data-category="girls"><span>GIRLS</span><strong>بنات</strong></button>
-        <button class="category-card boys" data-category="boys"><span>BOYS</span><strong>أولاد</strong></button>
-        <button class="category-card shoes" data-category="shoes"><span>SHOES</span><strong>أحذية</strong></button>
-        <button class="category-card bags" data-category="bags"><span>BAGS & ACCESSORIES</span><strong>شنط وإكسسوارات</strong></button>
-      </div>
-    </section>
+  <nav>
+    <a href="#new">الجديد</a>
+    <a href="#shop">الملابس</a>
+    <a href="#sale">العروض</a>
+    <a href="#about">عن VAYA</a>
+  </nav>
 
-    <section class="section shop-section" id="shop">
-      <div class="section-head">
-        <div><p class="eyebrow">VAYA COLLECTION</p><h2 id="collectionTitle">كل المنتجات</h2></div>
-        <span id="resultCount" class="result-count"></span>
-      </div>
-      <div class="shop-tools">
-        <div class="chips" id="chips">
-          <button class="chip active" data-category="all">الكل</button>
-          <button class="chip" data-category="women">نسائي</button>
-          <button class="chip" data-category="men">رجالي</button>
-          <button class="chip" data-category="girls">بنات</button>
-          <button class="chip" data-category="boys">أولاد</button>
-          <button class="chip" data-category="shoes">أحذية</button>
-          <button class="chip" data-category="bags">شنط وإكسسوارات</button>
-        </div>
-        <select id="sortSelect" aria-label="ترتيب المنتجات">
-          <option value="featured">الأكثر تميزًا</option>
-          <option value="low">السعر: من الأقل للأعلى</option>
-          <option value="high">السعر: من الأعلى للأقل</option>
-          <option value="name">الاسم</option>
-        </select>
-      </div>
-      <div class="product-grid" id="productGrid"></div>
-      <div class="empty-state" id="emptyState" hidden>ما لقينا منتجات مطابقة لبحثك.</div>
-    </section>
+  <div class="header-actions">
+    <button class="icon-btn" onclick="focusSearch()">⌕</button>
 
-    <section class="editorial" id="new">
-      <div class="editorial-image"></div>
-      <div class="editorial-copy">
-        <p class="eyebrow">THE VAYA EDIT</p>
-        <h2>Elegance, without trying too hard.</h2>
-        <p>اختيارات هادئة، قصّات مرتبة، وتفاصيل بتخلي القطعة تحكي عنكِ.</p>
-        <button class="btn dark" data-scroll="#shop">شاهدي المجموعة</button>
-      </div>
-    </section>
-
-    <section class="section" id="offers">
-      <div class="offer">
-        <div><p class="eyebrow">LIMITED EDIT</p><h2>خصومات مختارة حتى 30%</h2><p>على مجموعة من القطع المختارة لفترة محدودة.</p></div>
-        <button class="btn light" data-filter-sale>تسوّقي العروض</button>
-      </div>
-    </section>
-
-    <section class="newsletter">
-      <p class="eyebrow">VAYA NOTES</p>
-      <h2>خليكِ أول وحدة تعرف</h2>
-      <p>اشتركي ليصلك الجديد والعروض قبل الكل.</p>
-      <form id="newsletterForm">
-        <input type="email" required placeholder="البريد الإلكتروني">
-        <button type="submit">اشتراك</button>
-      </form>
-      <small id="newsletterMsg"></small>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-grid">
-      <div><a class="brand footer-brand" href="#home">VAYA</a><p>أسلوب عصري، اختيارات أذكى، وتفاصيل بتشبهك.</p></div>
-      <div><h4>تسوّقي</h4><a href="#shop" data-footer-category="women">نسائي</a><a href="#shop" data-footer-category="men">رجالي</a><a href="#shop" data-footer-category="girls">بنات</a><a href="#shop" data-footer-category="boys">أولاد</a></div>
-      <div><h4>المساعدة</h4><a href="#">الشحن والتوصيل</a><a href="#">الاستبدال والإرجاع</a><a href="#">الأسئلة الشائعة</a><a href="#">تواصل معنا</a></div>
-      <div><h4>تابعينا</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a></div>
-    </div>
-    <div class="container copyright">© 2026 VAYA — All Rights Reserved.</div>
-  </footer>
-
-  <div class="overlay" id="overlay"></div>
-
-  <aside class="drawer" id="cartDrawer">
-    <div class="drawer-head"><h3>سلة التسوق</h3><button class="close" data-close="cartDrawer">×</button></div>
-    <div id="cartItems" class="drawer-body"></div>
-    <div class="drawer-foot"><div><span>المجموع</span><strong id="cartTotal">0.00 د.أ</strong></div><button class="btn dark full" id="checkoutBtn">إتمام الطلب</button></div>
-  </aside>
-
-  <aside class="drawer" id="favDrawer">
-    <div class="drawer-head"><h3>المفضلة</h3><button class="close" data-close="favDrawer">×</button></div>
-    <div id="favItems" class="drawer-body"></div>
-  </aside>
-
-  <div class="modal" id="productModal" aria-hidden="true">
-    <div class="modal-card">
-      <button class="modal-close" data-close="productModal">×</button>
-      <div id="modalContent"></div>
-    </div>
+    <button class="icon-btn" onclick="openCart()">
+      🛍️ <span id="cartCount">0</span>
+    </button>
   </div>
 
-  <div class="toast" id="toast"></div>
-  <script src="script.js"></script>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-small">
+      VAYA / NEW COLLECTION
+    </div>
+
+    <h1>
+      EVERYDAY<br>
+      CASUAL
+    </h1>
+
+    <p>
+      قطع بسيطة، أسعار ألطف، وستايل يشبهك.
+    </p>
+
+    <a href="#shop" class="black-btn">
+      اكتشفي المجموعة
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+
+<section class="section">
+
+  <div class="section-head">
+    <h2>Shop by category</h2>
+    <span>اختاري ستايلك</span>
+  </div>
+
+  <div class="categories">
+
+    <div class="category" onclick="filterProducts('tops')">
+      👕 تيشيرتات
+    </div>
+
+    <div class="category" onclick="filterProducts('jeans')">
+      👖 بناطيل
+    </div>
+
+    <div class="category" onclick="filterProducts('hoodies')">
+      🧥 هوديز
+    </div>
+
+    <div class="category" onclick="filterProducts('accessories')">
+      👜 أكسسوارات
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section class="section" id="shop">
+
+  <div class="section-head">
+    <h2>All Products</h2>
+    <span>اختاري اللي يعجبك</span>
+  </div>
+
+  <div class="search-area">
+
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="🔎 ابحثي عن قطعة..."
+      oninput="searchProducts()"
+    >
+
+  </div>
+
+  <div class="filters">
+
+    <button class="filter active" onclick="filterProducts('all',this)">
+      الكل
+    </button>
+
+    <button class="filter" onclick="filterProducts('tops',this)">
+      تيشيرتات
+    </button>
+
+    <button class="filter" onclick="filterProducts('jeans',this)">
+      بناطيل
+    </button>
+
+    <button class="filter" onclick="filterProducts('hoodies',this)">
+      هوديز
+    </button>
+
+    <button class="filter" onclick="filterProducts('accessories',this)">
+      أكسسوارات
+    </button>
+
+  </div>
+
+
+  <div class="products" id="products">
+
+    <!-- 1 -->
+
+    <div class="product" data-category="tops" data-name="Basic Oversized T-Shirt">
+
+      <span class="badge">NEW</span>
+
+      <button class="favorite" onclick="favorite(event)">♡</button>
+
+      <div class="product-image">
+        <div>👕</div>
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-category">TOPS</div>
+
+        <div class="product-name">
+          Basic Oversized T-Shirt
+        </div>
+
+        <div class="price">
+          7.90 د.أ
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 2 -->
+
+    <div class="product" data-category="jeans" data-name="Wide Leg Jeans">
+
+      <button class="favorite" onclick="favorite(event)">♡</button>
+
+      <div class="product-image">
+        <div>👖</div>
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-category">JEANS</div>
+
+        <div class="product-name">
+          Wide Leg Jeans
+        </div>
+
+        <div class="price">
+          14.90 د.أ
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 3 -->
+
+    <div class="product" data-category="hoodies" data-name="Oversized Hoodie">
+
+      <span class="badge">BEST</span>
+
+      <button class="favorite" onclick="favorite(event)">♡</button>
+
+      <div class="product-image">
+        <div>🧥</div>
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-category">HOODIES</div>
+
+        <div class="product-name">
+          Oversized Hoodie
+        </div>
+
+        <div class="price">
+          12.90 د.أ
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 4 -->
+
+    <div class="product" data-category="accessories" data-name="Mini Shoulder Bag">
+
+      <button class="favorite" onclick="favorite(event)">♡</button>
+
+      <div class="product-image">
+        <div>👜</div>
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-category">ACCESSORIES</div>
+
+        <div class="product-name">
+          Mini Shoulder Bag
+        </div>
+
+        <div class="price">
+          8.90 د.أ
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 5 -->
+
+    <div class="product" data-category="tops" data-name="Graphic T-Shirt">
+
+      <span class="badge">SALE</span>
+
+      <button class="favorite" onclick="favorite(event)">♡</button>
+
+      <div class="product-image">
+        <div>👚</div>
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-category">TOPS</div>
+
+        <div class="product-name">
+          Graphic T-Shirt
+        </div>
+
+        <div class="price">
+          6.90 د.أ
+          <span class="old-price">9.90 د.أ</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 6 -->
+
+    <div class="product" data-category="jeans" data-name="Cargo Pants">
+
+      <button class="favorite" onclick="favorite(event)">♡</button>
+
+      <div class="product-image">
+        <div>👖</div>
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-category">PANTS</div>
+
+        <div class="product-name">
+          Cargo Pants
+        </div>
+
+        <div class="price">
+          13.90 د.أ
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 7 -->
+
+    <div class="product" data-category="hoodies" data-name="Zip Hoodie">
+
+      <button class="favorite" onclick="favorite(event)">♡</button>
+
+      <div class="product-image">
+        <div>🧶</div>
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-category">HOODIES</div>
+
+        <div class="product-name">
+          Basic Zip Hoodie
+        </div>
+
+        <div class="price">
+          11.90 د.أ
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 8 -->
+
+    <div class="product" data-category="accessories" data-name="Classic Cap">
+
+      <span class="badge">SALE</span>
+
+      <button class="favorite" onclick="favorite(event)">♡</button>
+
+      <div class="product-image">
+        <div>🧢</div>
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-category">ACCESSORIES</div>
+
+        <div class="product-name">
+          Classic Cap
+        </div>
+
+        <div class="price">
+          4.90 د.أ
+          <span class="old-price">7.90 د.أ</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PROMO -->
+
+<section class="promo" id="sale">
+
+  <h2>UNDER 10 JD</h2>
+
+  <p>
+    ستايلات كاجوال حلوة بدون ما تدفعي كثير.
+  </p>
+
+  <a href="#shop" class="white-btn">
+    SHOP NOW
+  </a>
+
+</section>
+
+
+<!-- NEW -->
+
+<section class="section" id="new">
+
+  <div class="section-head">
+
+    <h2>New Arrivals ✨</h2>
+
+    <span>
+      وصلت جديد
+    </span>
+
+  </div>
+
+  <div style="
+    background:#f2f2f2;
+    padding:50px;
+    text-align:center;
+  ">
+
+    <h2 style="margin-bottom:15px;">
+      Your next favorite piece.
+    </h2>
+
+    <p style="color:#777;margin-bottom:25px;">
+      قطع جديدة كل فترة — خليكِ أول وحدة تشوفيها.
+    </p>
+
+    <a href="#shop" class="black-btn">
+      اكتشفي الجديد
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="section" id="about">
+
+  <div class="section-head">
+
+    <h2>About VAYA</h2>
+
+    <span>
+      أكثر من مجرد ملابس
+    </span>
+
+  </div>
+
+  <p style="
+    max-width:700px;
+    line-height:2;
+    color:#666;
+  ">
+
+    VAYA هو متجر كاجوال شبابي للقطع اليومية.
+    اخترنا التصميم البسيط والأسعار المناسبة حتى تقدري
+    تبني ستايلك بطريقتك، سواء للجامعة، الطلعات أو يوم عادي.
+
+  </p>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div>
+
+    <h3>VAYA</h3>
+
+    <p>
+      Your everyday casual style.
+    </p>
+
+  </div>
+
+
+  <div>
+
+    <h3>Quick Links</h3>
+
+    <p>
+      الجديد<br>
+      الملابس<br>
+      العروض<br>
+      المفضلة
+    </p>
+
+  </div>
+
+
+  <div>
+
+    <h3>Contact</h3>
+
+    <p>
+      Instagram: @vaya.store<br>
+      WhatsApp: 07XXXXXXXX<br>
+      Jordan 🇯🇴
+    </p>
+
+  </div>
+
+</footer>
+
+
+<!-- CART -->
+
+<div class="cart-panel" id="cartPanel">
+
+  <div class="cart-top">
+
+    <h2>سلة التسوق</h2>
+
+    <button class="close" onclick="closeCart()">
+      ×
+    </button>
+
+  </div>
+
+  <div id="cartItems">
+
+    <p style="color:#777;">
+      السلة فاضية حاليًا 🛍️
+    </p>
+
+  </div>
+
+  <div class="cart-total">
+    المجموع: <span id="total">0.00</span> د.أ
+  </div>
+
+  <div class="whatsapp" onclick="orderWhatsApp()">
+    اطلب عبر WhatsApp
+  </div>
+
+</div>
+
+
+<!-- AI BUTTON -->
+
+<button class="ai-button" onclick="toggleAI()">
+  🤖
+</button>
+
+
+<!-- AI CHAT -->
+
+<div class="ai-box" id="aiBox">
+
+  <div class="ai-header">
+
+    <strong>
+      VAYA AI
+    </strong>
+
+    <button
+      onclick="toggleAI()"
+      style="
+        background:none;
+        border:0;
+        color:white;
+        cursor:pointer;
+      "
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="ai-messages" id="aiMessages">
+
+    <div class="message bot">
+
+      أهلًا 👋 أنا VAYA AI 🤖<br><br>
+
+      ساعديني أعرف شو بدك، وأنا بساعدك تختاري اللوك المناسب ✨
+
+    </div>
+
+  </div>
+
+
+  <div class="ai-options">
+
+    <button class="ai-option"
+      onclick="aiQuick('بدي لوك للجامعة')">
+      🎓 لوك جامعة
+    </button>
+
+    <button class="ai-option"
+      onclick="aiQuick('بدي اشي تحت 10 دنانير')">
+      💸 تحت 10 دنانير
+    </button>
+
+    <button class="ai-option"
+      onclick="aiQuick('بدي لوك كاجوال')">
+      👕 لوك كاجوال
+    </button>
+
+  </div>
+
+
+  <div class="ai-input">
+
+    <input
+      id="aiInput"
+      type="text"
+      placeholder="اكتبي شو بدك..."
+      onkeydown="if(event.key==='Enter')sendAI()"
+    >
+
+    <button onclick="sendAI()">
+      ➤
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* CART */
+
+let cart = [];
+let total = 0;
+
+document.querySelectorAll(".product").forEach(product => {
+
+  product.addEventListener("click", function(e){
+
+    if(
+      e.target.classList.contains("favorite") ||
+      e.target.closest(".favorite")
+    ){
+      return;
+    }
+
+    const name =
+      product.dataset.name;
+
+    const priceText =
+      product.querySelector(".price").innerText;
+
+    const price =
+      parseFloat(
+        priceText.replace(",",".")
+      );
+
+    cart.push({
+      name:name,
+      price:price
+    });
+
+    total += price;
+
+    updateCart();
+
+    openCart();
+
+  });
+
+});
+
+
+function updateCart(){
+
+  document.getElementById("cartCount").innerText =
+    cart.length;
+
+  const box =
+    document.getElementById("cartItems");
+
+  if(cart.length === 0){
+
+    box.innerHTML =
+      '<p style="color:#777;">السلة فاضية حاليًا 🛍️</p>';
+
+  }else{
+
+    box.innerHTML = "";
+
+    cart.forEach((item,index)=>{
+
+      box.innerHTML += `
+
+        <div class="cart-item">
+
+          <span>
+            ${item.name}
+          </span>
+
+          <strong>
+            ${item.price.toFixed(2)} د.أ
+          </strong>
+
+          <button
+            onclick="removeItem(${index})"
+            style="
+              border:0;
+              background:none;
+              cursor:pointer;
+            "
+          >
+            ×
+          </button>
+
+        </div>
+
+      `;
+
+    });
+
+  }
+
+  document.getElementById("total").innerText =
+    total.toFixed(2);
+
+}
+
+
+function removeItem(index){
+
+  total -= cart[index].price;
+
+  cart.splice(index,1);
+
+  updateCart();
+
+}
+
+
+function openCart(){
+
+  document
+    .getElementById("cartPanel")
+    .classList.add("open");
+
+}
+
+
+function closeCart(){
+
+  document
+    .getElementById("cartPanel")
+    .classList.remove("open");
+
+}
+
+
+function orderWhatsApp(){
+
+  if(cart.length === 0){
+
+    alert("السلة فاضية 😅");
+
+    return;
+
+  }
+
+  let message =
+    "مرحبا VAYA 👋 أريد طلب:%0A%0A";
+
+  cart.forEach(item=>{
+
+    message +=
+      "• " +
+      item.name +
+      " - " +
+      item.price +
+      " د.أ%0A";
+
+  });
+
+  message +=
+    "%0Aالمجموع: " +
+    total.toFixed(2) +
+    " د.أ";
+
+  window.open(
+    "https://wa.me/962700000000?text=" +
+    message,
+    "_blank"
+  );
+
+}
+
+
+/* FAVORITES */
+
+function favorite(event){
+
+  event.stopPropagation();
+
+  const button =
+    event.currentTarget;
+
+  button.innerText =
+    button.innerText === "♡"
+    ? "♥"
+    : "♡";
+
+}
+
+
+/* SEARCH */
+
+function searchProducts(){
+
+  const query =
+    document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase();
+
+  document
+    .querySelectorAll(".product")
+    .forEach(product=>{
+
+      const name =
+        product.dataset.name.toLowerCase();
+
+      product.style.display =
+        name.includes(query)
+        ? ""
+        : "none";
+
+    });
+
+}
+
+
+function focusSearch(){
+
+  document
+    .getElementById("searchInput")
+    .focus();
+
+  document
+    .getElementById("shop")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* FILTER */
+
+function filterProducts(category, button){
+
+  document
+    .querySelectorAll(".product")
+    .forEach(product=>{
+
+      product.style.display =
+        category === "all" ||
+        product.dataset.category === category
+        ? ""
+        : "none";
+
+    });
+
+  if(button){
+
+    document
+      .querySelectorAll(".filter")
+      .forEach(btn =>
+        btn.classList.remove("active")
+      );
+
+    button.classList.add("active");
+
+  }
+
+}
+
+
+/* AI */
+
+function toggleAI(){
+
+  document
+    .getElementById("aiBox")
+    .classList.toggle("open");
+
+}
+
+
+function addAIMessage(text,type){
+
+  const box =
+    document.getElementById("aiMessages");
+
+  const div =
+    document.createElement("div");
+
+  div.className =
+    "message " + type;
+
+  div.innerHTML =
+    text;
+
+  box.appendChild(div);
+
+  box.scrollTop =
+    box.scrollHeight;
+
+}
+
+
+function aiQuick(text){
+
+  addAIMessage(
+    text,
+    "user"
+  );
+
+  aiReply(text);
+
+}
+
+
+function sendAI(){
+
+  const input =
+    document.getElementById("aiInput");
+
+  const text =
+    input.value.trim();
+
+  if(!text) return;
+
+  addAIMessage(
+    text,
+    "user"
+  );
+
+  input.value = "";
+
+  aiReply(text);
+
+}
+
+
+function aiReply(text){
+
+  const t =
+    text.toLowerCase();
+
+  let reply = "";
+
+  if(
+    t.includes("10") ||
+    t.includes("رخيص") ||
+    t.includes("سعر")
+  ){
+
+    reply =
+      "أكيد 💸 إذا ميزانيتك تحت 10 دنانير، أنصحك بـ:<br><br>" +
+      "👕 Graphic T-Shirt — 6.90 د.أ<br>" +
+      "👕 Basic T-Shirt — 7.90 د.أ<br>" +
+      "🧢 Classic Cap — 4.90 د.أ<br>" +
+      "👜 Mini Shoulder Bag — 8.90 د.أ";
+
+  }
+
+  else if(
+    t.includes("جامعة") ||
+    t.includes("جامعه")
+  ){
+
+    reply =
+      "لوك الجامعة لازم يكون مريح وكاجوال 🎓✨<br><br>" +
+      "👕 Oversized T-Shirt<br>" +
+      "👖 Wide Leg Jeans<br>" +
+      "👜 Mini Shoulder Bag<br><br>" +
+      "ستايل بسيط ومرتب طول اليوم 🤍";
+
+  }
+
+  else if(
+    t.includes("كاجوال") ||
+    t.includes("لوك")
+  ){
+
+    reply =
+      "تمام 😎 عندي لك لوك كاجوال بسيط:<br><br>" +
+      "👕 Graphic T-Shirt — 6.90 د.أ<br>" +
+      "👖 Cargo Pants — 13.90 د.أ<br>" +
+      "🧢 Classic Cap — 4.90 د.أ<br><br>" +
+      "المجموع تقريبًا 25.70 د.أ ✨";
+
+  }
+
+  else{
+
+    reply =
+      "أكيد 🤍 احكيلي أكثر شو بدك، مثل:<br><br>" +
+      "• لوك جامعة 🎓<br>" +
+      "• شيء تحت 10 دنانير 💸<br>" +
+      "• لوك كاجوال 👕<br>" +
+      "• هودي 🧥<br>" +
+      "• بنطلون 👖";
+
+  }
+
+  setTimeout(()=>{
+
+    addAIMessage(
+      reply,
+      "bot"
+    );
+
+  },500);
+
+}
+
+</script>
+
 </body>
 </html>
