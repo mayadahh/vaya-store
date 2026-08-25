@@ -1,617 +1,160 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VAYA | فايا</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
-
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Cairo,sans-serif;background:#fff;color:#111}
-button,input,select{font-family:inherit}
-button{cursor:pointer}
-
-.top{background:#111;color:#fff;text-align:center;padding:8px;font-size:11px}
-header{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;border-bottom:1px solid #eee;position:sticky;top:0;background:#fff;z-index:20}
-.logo{font:600 34px "Playfair Display";letter-spacing:7px;direction:ltr}
-nav{display:flex;gap:22px}
-nav button{background:none;border:0;font-size:12px}
-nav button:hover{color:#a27c4d}
-.icons{display:flex;gap:8px}
-.icons button{background:none;border:0;font-size:19px}
-
-.hero{
-height:590px;
-background:linear-gradient(#0006,#0006),
-url("https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1800&q=85") center/cover;
-display:flex;align-items:center;justify-content:center;text-align:center;color:#fff
-}
-.hero small{letter-spacing:5px}
-.hero h1{font:600 105px "Playfair Display";letter-spacing:15px;direction:ltr}
-.hero p{margin:10px 0 25px}
-.hero button{border:0;background:#fff;padding:14px 40px}
-
-section{padding:70px 5%}
-.title{text-align:center;margin-bottom:35px}
-.title small{color:#9b784d;letter-spacing:3px}
-.title h2{font:500 38px "Playfair Display";margin-top:5px}
-
-.categories{background:#faf8f5}
-.catgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.cat{height:300px;position:relative;overflow:hidden;cursor:pointer}
-.cat img{width:100%;height:100%;object-fit:cover;transition:.4s}
-.cat:hover img{transform:scale(1.06)}
-.cat span{position:absolute;bottom:0;right:0;left:0;text-align:center;color:#fff;padding:25px;background:linear-gradient(transparent,#000b);font-size:16px}
-
-.banner{
-margin:0;
-padding:80px 20px;
-text-align:center;
-background:#111;color:#fff
-}
-.banner h2{font:500 45px "Playfair Display"}
-.banner p{margin-top:8px}
-
-.shop{background:#fff}
-.tools{display:flex;justify-content:space-between;gap:15px;margin-bottom:20px}
-.search{border:1px solid #ddd;display:flex;max-width:500px;width:100%}
-.search input{border:0;outline:0;padding:13px;width:100%}
-.search button{border:0;background:#fff;padding:10px}
-select{border:1px solid #ddd;background:#fff;padding:10px}
-
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}
-.filters button{background:#fff;border:1px solid #ddd;padding:9px 16px;font-size:11px}
-.filters button.active,.filters button:hover{background:#111;color:#fff}
-
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.card{min-width:0}
-.pic{position:relative;aspect-ratio:3/4;overflow:hidden;background:#eee;cursor:pointer}
-.pic img{width:100%;height:100%;object-fit:cover;transition:.4s}
-.pic:hover img{transform:scale(1.04)}
-.heart{position:absolute;top:10px;left:10px;width:36px;height:36px;border:0;border-radius:50%;background:#fff;font-size:19px;z-index:2}
-.heart.on{color:#c44}
-.sale{position:absolute;right:8px;top:8px;background:#c94d4d;color:#fff;padding:4px 8px;font-size:9px;z-index:2}
-.info{padding:12px 2px 20px}
-.info small{color:#888;font-size:9px}
-.info h3{font-size:13px;margin:4px 0}
-.stars{font-size:10px}
-.price{font-weight:700;margin-top:5px}
-.old{text-decoration:line-through;color:#999;font-size:10px;margin-right:6px;font-weight:400}
-.view{width:100%;border:0;background:#111;color:#fff;padding:10px;margin-top:10px}
-
-footer{background:#111;color:#aaa;text-align:center;padding:45px}
-footer h2{color:#fff;font:500 32px "Playfair Display";letter-spacing:6px;direction:ltr}
-footer p{margin:8px}
-
-.overlay{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:15px;z-index:100}
-.overlay.show{display:flex}
-.modal{background:#fff;width:950px;max-width:100%;max-height:92vh;overflow:auto;position:relative}
-.close{position:absolute;left:15px;top:15px;width:35px;height:35px;border:0;background:#fff;border-radius:50%;font-size:22px;z-index:3}
-.detail{display:grid;grid-template-columns:1fr 1fr}
-.detailimg{min-height:620px}
-.detailimg img{width:100%;height:100%;object-fit:cover}
-.detailtext{padding:60px 35px}
-.detailtext small{color:#98764c}
-.detailtext h2{font:500 40px "Playfair Display";margin:8px 0}
-.desc{color:#777;font-size:12px;line-height:2;margin:20px 0}
-.pricebig{font-size:22px;font-weight:700}
-.options{margin-top:20px}
-.options label{display:block;font-size:11px;margin:12px 0 7px}
-.option{background:#fff;border:1px solid #ccc;padding:8px 14px;margin:2px}
-.option.selected{background:#111;color:#fff}
-.add{width:100%;background:#111;color:#fff;border:0;padding:15px;margin-top:20px}
-
-.side{position:fixed;top:0;right:-430px;width:430px;max-width:100%;height:100vh;background:#fff;z-index:200;transition:.3s;padding:25px;box-shadow:-8px 0 25px #0002}
-.side.show{right:0}
-.sidehead{display:flex;justify-content:space-between;border-bottom:1px solid #ddd;padding-bottom:15px}
-.sidehead button{background:none;border:0;font-size:22px}
-.cartitems{height:75vh;overflow:auto}
-.cartitem{display:grid;grid-template-columns:70px 1fr 25px;gap:10px;padding:15px 0;border-bottom:1px solid #eee}
-.cartitem img{width:70px;height:85px;object-fit:cover}
-.cartitem h4{font-size:11px}
-.cartitem small{font-size:9px;color:#777}
-.remove{border:0;background:none;font-size:18px}
-.total{border-top:1px solid #ddd;padding-top:15px;display:flex;justify-content:space-between}
-
-.toast{position:fixed;bottom:25px;right:25px;background:#111;color:#fff;padding:13px 20px;font-size:12px;z-index:500;transform:translateY(100px);opacity:0;transition:.3s}
-.toast.show{transform:translateY(0);opacity:1}
-
-@media(max-width:900px){
-nav{display:none}
-.products{grid-template-columns:repeat(3,1fr)}
-.catgrid{grid-template-columns:repeat(3,1fr)}
-}
-@media(max-width:600px){
-header{padding:0 4%}
-.logo{font-size:27px}
-.hero{height:480px}
-.hero h1{font-size:65px;letter-spacing:8px}
-section{padding:50px 4%}
-.catgrid{grid-template-columns:repeat(2,1fr)}
-.cat{height:230px}
-.products{grid-template-columns:repeat(2,1fr);gap:12px}
-.tools{flex-direction:column}
-.detail{grid-template-columns:1fr}
-.detailimg{min-height:420px}
-.detailtext{padding:35px 20px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAYA — Fashion Store</title>
+  <meta name="description" content="VAYA — متجر أزياء عصري للنساء والرجال والأطفال.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<div class="top">✨ توصيل داخل الأردن • VAYA FASHION</div>
-
-<header>
-<div class="logo">VAYA</div>
-
-<nav>
-<button onclick="filter('الكل')">الرئيسية</button>
-<button onclick="filter('نساء')">نساء</button>
-<button onclick="filter('رجال')">رجال</button>
-<button onclick="filter('بنات')">بنات</button>
-<button onclick="filter('أولاد')">أولاد</button>
-<button onclick="filter('بيبي')">بيبي</button>
-<button onclick="filter('أحذية')">أحذية</button>
-</nav>
-
-<div class="icons">
-<button onclick="openSide()">🛍 <sup id="count">0</sup></button>
-<button onclick="scrollShop()">⌕</button>
-</div>
-</header>
-
-<section class="hero">
-<div>
-<small>VAYA NEW COLLECTION</small>
-<h1>VAYA</h1>
-<p>أزياء لكل شخص، ولكل عمر، ولكل مناسبة.</p>
-<button onclick="scrollShop()">تسوقي الآن</button>
-</div>
-</section>
-
-<section class="categories">
-
-<div class="title">
-<small>SHOP BY CATEGORY</small>
-<h2>تسوقي حسب الفئة</h2>
-</div>
-
-<div class="catgrid">
-
-<div class="cat" onclick="filter('نساء')">
-<img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=80">
-<span>نساء</span>
-</div>
-
-<div class="cat" onclick="filter('رجال')">
-<img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?auto=format&fit=crop&w=700&q=80">
-<span>رجال</span>
-</div>
-
-<div class="cat" onclick="filter('بنات')">
-<img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=700&q=80">
-<span>بنات</span>
-</div>
-
-<div class="cat" onclick="filter('أولاد')">
-<img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=700&q=80">
-<span>أولاد</span>
-</div>
-
-<div class="cat" onclick="filter('بيبي')">
-<img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=700&q=80">
-<span>بيبي</span>
-</div>
-
-<div class="cat" onclick="filter('أحذية')">
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80">
-<span>أحذية</span>
-</div>
-
-<div class="cat" onclick="filter('إكسسوارات')">
-<img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80">
-<span>شنط وإكسسوارات</span>
-</div>
-
-</div>
-</section>
-
-<div class="banner">
-<small>VAYA SPECIAL</small>
-<h2>عروض تصل إلى 40%</h2>
-<p>اختاري إطلالتك بسعر أجمل.</p>
-</div>
-
-<section class="shop" id="shop">
-
-<div class="title">
-<small>VAYA STORE</small>
-<h2>اكتشفي منتجاتنا</h2>
-</div>
-
-<div class="tools">
-
-<div class="search">
-<input id="search" placeholder="ابحثي عن فستان، حذاء، قميص...">
-<button onclick="searchProducts()">⌕</button>
-</div>
-
-<select id="sort" onchange="render()">
-<option value="">ترتيب المنتجات</option>
-<option value="low">السعر الأقل</option>
-<option value="high">السعر الأعلى</option>
-<option value="sale">الأعلى خصمًا</option>
-</select>
-
-</div>
-
-<div class="filters">
-<button class="active" onclick="filter('الكل')">الكل</button>
-<button onclick="filter('نساء')">نساء</button>
-<button onclick="filter('رجال')">رجال</button>
-<button onclick="filter('بنات')">بنات</button>
-<button onclick="filter('أولاد')">أولاد</button>
-<button onclick="filter('بيبي')">بيبي</button>
-<button onclick="filter('أحذية')">أحذية</button>
-<button onclick="filter('إكسسوارات')">إكسسوارات</button>
-</div>
-
-<div class="products" id="products"></div>
-
-</section>
-
-<footer>
-<h2>VAYA</h2>
-<p>أزياء لكل شخص، ولكل عمر.</p>
-<span>© 2026 VAYA</span>
-</footer>
-
-<!-- PRODUCT -->
-
-<div class="overlay" id="productModal">
-<div class="modal">
-
-<button class="close" onclick="closeProduct()">×</button>
-
-<div class="detail">
-
-<div class="detailimg">
-<img id="dimg">
-</div>
-
-<div class="detailtext">
-
-<small id="dcat"></small>
-<h2 id="dname"></h2>
-
-<div>★★★★★</div>
-
-<div class="pricebig">
-<span id="dprice"></span>
-<del id="dold" class="old"></del>
-</div>
-
-<p id="ddesc" class="desc"></p>
-
-<div class="options">
-<label>المقاس</label>
-<div id="sizes"></div>
-
-<label>اللون</label>
-<div id="colors"></div>
-
-<label>الكمية</label>
-<input id="qty" type="number" value="1" min="1" style="width:100%;padding:12px;border:1px solid #ddd">
-
-<button class="add" onclick="addCart()">أضيفي إلى السلة 🛍</button>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-<!-- CART -->
-
-<div class="side" id="side">
-
-<div class="sidehead">
-<h2>سلة VAYA</h2>
-<button onclick="closeSide()">×</button>
-</div>
-
-<div class="cartitems" id="cart"></div>
-
-<div class="total">
-<strong>المجموع</strong>
-<strong><span id="total">0</span> د.أ</strong>
-</div>
-
-<button class="add" onclick="fakeOrder()">إرسال الطلب</button>
-
-</div>
-
-<div class="toast" id="toast"></div>
-
-<script>
-
-const products=[
-
-[1,"فستان لونا الأسود","نساء","فساتين",39,49,"أسود","https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=800&q=85","فستان أنيق بتصميم عصري مناسب للمناسبات."],
-
-[2,"طقم فيرا البيج","نساء","أطقم",45,55,"بيج","https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=85","طقم عصري بلون هادئ وسهل التنسيق."],
-
-[3,"قميص سيلين الأبيض","نساء","قمصان",15,20,"أبيض","https://images.unsplash.com/photo-1605763240000-7e93b172d754?auto=format&fit=crop&w=800&q=85","قميص كلاسيكي للإطلالات اليومية."],
-
-[4,"بنطلون لورا الواسع","نساء","بناطيل",22,28,"أسود","https://images.unsplash.com/photo-1506629905607-d9c297d7f4d8?auto=format&fit=crop&w=800&q=85","بنطلون واسع بقصة عصرية."],
-
-[5,"بليزر نوفا","نساء","جاكيتات",32,40,"أسود","https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=800&q=85","بليزر أنيق للإطلالات الرسمية."],
-
-[6,"تيشيرت كلاسيك رجالي","رجال","تيشيرتات",12,16,"أبيض","https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85","تيشيرت قطني مريح."],
-
-[7,"قميص رجالي أسود","رجال","قمصان",18,24,"أسود","https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=85","قميص رجالي أنيق."],
-
-[8,"جينز رجالي","رجال","بناطيل",21,27,"أزرق","https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=800&q=85","جينز بقصة عصرية."],
-
-[9,"جاكيت رجالي كاجوال","رجال","جاكيتات",35,45,"بني","https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=85","جاكيت كاجوال للإطلالات اليومية."],
-
-[10,"بدلة رجالية كلاسيكية","رجال","بدلات",75,95,"أسود","https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=85","بدلة كلاسيكية للمناسبات."],
-
-[11,"فستان أميرة صغير","بنات","فساتين",22,28,"وردي","https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=800&q=85","فستان لطيف للبنات."],
-
-[12,"طقم بناتي كاجوال","بنات","أطقم",18,23,"وردي","https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=800&q=85","طقم يومي مريح."],
-
-[13,"تيشيرت أولادي","أولاد","تيشيرتات",10,13,"أزرق","https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=800&q=85","تيشيرت عملي للأولاد."],
-
-[14,"طقم أولادي رياضي","أولاد","أطقم",19,25,"أسود","https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=800&q=85","طقم رياضي مريح."],
-
-[15,"طقم بيبي ناعم","بيبي","أطقم",14,18,"بيج","https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=800&q=85","طقم ناعم للبيبي."],
-
-[16,"بيجاما بيبي","بيبي","بيجامات",12,16,"أبيض","https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=85","بيجاما ناعمة."],
-
-[17,"سنيكرز أبيض","أحذية","سنيكرز",28,35,"أبيض","https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=85","سنيكرز عصري."],
-
-[18,"حذاء رجالي كاجوال","أحذية","رجالي",30,38,"بني","https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=800&q=85","حذاء أنيق ومريح."],
-
-[19,"شنطة لونا","إكسسوارات","شنط",25,32,"بني","https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=85","شنطة أنيقة للاستخدام اليومي."],
-
-[20,"نظارة VAYA","إكسسوارات","نظارات",12,16,"أسود","https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=85","نظارة شمسية عصرية."]
-
-];
-
-let category="الكل";
-let cart=[];
-let current=null;
-
-function discount(p){return Math.round((p[5]-p[4])/p[5]*100)}
-
-function render(){
-
-let q=document.getElementById("search").value.toLowerCase();
-
-let list=products.filter(p=>
-(category==="الكل"||p[2]===category)&&
-(p[1]+p[2]+p[3]+p[6]).toLowerCase().includes(q)
-);
-
-let sort=document.getElementById("sort").value;
-
-if(sort==="low")list.sort((a,b)=>a[4]-b[4]);
-if(sort==="high")list.sort((a,b)=>b[4]-a[4]);
-if(sort==="sale")list.sort((a,b)=>discount(b)-discount(a));
-
-document.getElementById("products").innerHTML=list.map(p=>`
-
-<div class="card">
-
-<div class="pic" onclick="openProduct(${p[0]})">
-
-<span class="sale">خصم ${discount(p)}%</span>
-
-<button class="heart" onclick="event.stopPropagation();heart(this)">♡</button>
-
-<img src="${p[7]}" loading="lazy">
-
-</div>
-
-<div class="info">
-
-<small>${p[2]} • ${p[3]}</small>
-
-<h3>${p[1]}</h3>
-
-<div class="stars">★★★★★</div>
-
-<div class="price">
-${p[4]} د.أ
-<del class="old">${p[5]} د.أ</del>
-</div>
-
-<button class="view" onclick="openProduct(${p[0]})">
-عرض المنتج
-</button>
-
-</div>
-
-</div>
-
-`).join("");
-
-}
-
-function filter(c){
-
-category=c;
-
-document.querySelectorAll(".filters button").forEach(b=>{
-b.classList.remove("active");
-});
-
-render();
-
-scrollShop();
-
-}
-
-function searchProducts(){
-render();
-scrollShop();
-}
-
-function scrollShop(){
-document.getElementById("shop").scrollIntoView({behavior:"smooth"});
-}
-
-function openProduct(id){
-
-current=products.find(p=>p[0]===id);
-
-document.getElementById("dimg").src=current[7];
-document.getElementById("dname").textContent=current[1];
-document.getElementById("dcat").textContent=current[2]+" • "+current[3];
-document.getElementById("dprice").textContent=current[4]+" د.أ";
-document.getElementById("dold").textContent=current[5]+" د.أ";
-document.getElementById("ddesc").textContent=current[8];
-
-document.getElementById("sizes").innerHTML=
-["S","M","L","XL"].map(x=>
-`<button class="option">${x}</button>`).join("");
-
-document.getElementById("colors").innerHTML=
-["أسود","أبيض","بيج"].map(x=>
-`<button class="option">${x}</button>`).join("");
-
-document.querySelectorAll(".option").forEach(b=>{
-b.onclick=()=>{
-b.parentElement.querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));
-b.classList.add("selected");
-};
-});
-
-document.getElementById("productModal").classList.add("show");
-
-}
-
-function closeProduct(){
-document.getElementById("productModal").classList.remove("show");
-}
-
-function addCart(){
-
-let qty=Math.max(1,Number(document.getElementById("qty").value)||1);
-
-cart.push({
-id:current[0],
-name:current[1],
-price:current[4],
-image:current[7],
-qty
-});
-
-updateCart();
-closeProduct();
-toast("تمت إضافة المنتج إلى السلة 🤍");
-
-}
-
-function updateCart(){
-
-document.getElementById("count").textContent=
-cart.reduce((a,b)=>a+b.qty,0);
-
-let total=cart.reduce((a,b)=>a+b.price*b.qty,0);
-
-document.getElementById("total").textContent=total;
-
-document.getElementById("cart").innerHTML=
-cart.length?
-
-cart.map((x,i)=>`
-
-<div class="cartitem">
-
-<img src="${x.image}">
-
-<div>
-<h4>${x.name}</h4>
-<small>الكمية: ${x.qty}</small>
-<br>
-<strong>${x.price*x.qty} د.أ</strong>
-</div>
-
-<button class="remove" onclick="removeCart(${i})">×</button>
-
-</div>
-
-`).join("")
-
-:
-
-`<p style="text-align:center;padding:80px 0;color:#777">
-السلة فارغة 🤍
-</p>`;
-
-}
-
-function removeCart(i){
-cart.splice(i,1);
-updateCart();
-}
-
-function openSide(){
-updateCart();
-document.getElementById("side").classList.add("show");
-}
-
-function closeSide(){
-document.getElementById("side").classList.remove("show");
-}
-
-function heart(btn){
-
-btn.classList.toggle("on");
-
-btn.textContent=
-btn.classList.contains("on")?"♥":"♡";
-
-toast(
-btn.classList.contains("on")
-?"تمت الإضافة للمفضلة 🤍"
-:"تمت الإزالة من المفضلة"
-);
-
-}
-
-function fakeOrder(){
-
-if(!cart.length){
-toast("السلة فارغة 🤍");
-return;
-}
-
-toast("هذه نسخة عرض تجريبية — الطلب غير حقيقي 🤍");
-
-}
-
-function toast(text){
-
-let t=document.getElementById("toast");
-
-t.textContent=text;
-t.classList.add("show");
-
-setTimeout(()=>t.classList.remove("show"),2500);
-
-}
-
-document.getElementById("search").addEventListener("input",render);
-
-render();
-
-</script>
-
+  <div class="announcement">شحن مجاني للطلبات فوق 50 د.أ <span>✦</span> تشكيلة VAYA الجديدة وصلت</div>
+
+  <header class="header">
+    <div class="nav container">
+      <button class="mobile-menu" id="mobileMenu" aria-label="القائمة">☰</button>
+      <a class="brand" href="#home">VAYA</a>
+      <nav id="navLinks">
+        <a href="#home">الرئيسية</a>
+        <a href="#shop">المتجر</a>
+        <a href="#categories">الأقسام</a>
+        <a href="#new">وصل حديثًا</a>
+        <a href="#offers">العروض</a>
+      </nav>
+      <div class="actions">
+        <button id="searchBtn" class="icon" aria-label="بحث">⌕</button>
+        <button id="favoritesBtn" class="icon" aria-label="المفضلة">♡<b id="favCount">0</b></button>
+        <button id="cartBtn" class="icon" aria-label="السلة">🛍<b id="cartCount">0</b></button>
+      </div>
+    </div>
+    <div class="searchbar" id="searchbar">
+      <div class="container search-inner">
+        <input id="searchInput" type="search" placeholder="ابحثي عن فستان، بليزر، حذاء...">
+        <button id="clearSearch">مسح</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">VAYA / NEW SEASON</p>
+        <h1>أسلوبكِ.<br><em>بطريقتكِ.</em></h1>
+        <p class="hero-desc">قطع مختارة بعناية تجمع بين البساطة، الأناقة، واللمسة العصرية لكل يوم وكل مناسبة.</p>
+        <div class="hero-buttons">
+          <button class="btn dark" data-scroll="#shop">تسوّقي الآن</button>
+          <button class="btn light" data-scroll="#categories">استكشفي الأقسام</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-badge">VAYA<br><small>EST. 2026</small></div>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="section-head">
+        <div><p class="eyebrow">SHOP BY CATEGORY</p><h2>اختاري عالمك</h2></div>
+        <p>كل قسم مرتب بمنتجاته الخاصة، لتوصلي للي بدك إياه بسرعة.</p>
+      </div>
+      <div class="category-grid">
+        <button class="category-card women" data-category="women"><span>WOMEN</span><strong>نسائي</strong></button>
+        <button class="category-card men" data-category="men"><span>MEN</span><strong>رجالي</strong></button>
+        <button class="category-card girls" data-category="girls"><span>GIRLS</span><strong>بنات</strong></button>
+        <button class="category-card boys" data-category="boys"><span>BOYS</span><strong>أولاد</strong></button>
+        <button class="category-card shoes" data-category="shoes"><span>SHOES</span><strong>أحذية</strong></button>
+        <button class="category-card bags" data-category="bags"><span>BAGS & ACCESSORIES</span><strong>شنط وإكسسوارات</strong></button>
+      </div>
+    </section>
+
+    <section class="section shop-section" id="shop">
+      <div class="section-head">
+        <div><p class="eyebrow">VAYA COLLECTION</p><h2 id="collectionTitle">كل المنتجات</h2></div>
+        <span id="resultCount" class="result-count"></span>
+      </div>
+      <div class="shop-tools">
+        <div class="chips" id="chips">
+          <button class="chip active" data-category="all">الكل</button>
+          <button class="chip" data-category="women">نسائي</button>
+          <button class="chip" data-category="men">رجالي</button>
+          <button class="chip" data-category="girls">بنات</button>
+          <button class="chip" data-category="boys">أولاد</button>
+          <button class="chip" data-category="shoes">أحذية</button>
+          <button class="chip" data-category="bags">شنط وإكسسوارات</button>
+        </div>
+        <select id="sortSelect" aria-label="ترتيب المنتجات">
+          <option value="featured">الأكثر تميزًا</option>
+          <option value="low">السعر: من الأقل للأعلى</option>
+          <option value="high">السعر: من الأعلى للأقل</option>
+          <option value="name">الاسم</option>
+        </select>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+      <div class="empty-state" id="emptyState" hidden>ما لقينا منتجات مطابقة لبحثك.</div>
+    </section>
+
+    <section class="editorial" id="new">
+      <div class="editorial-image"></div>
+      <div class="editorial-copy">
+        <p class="eyebrow">THE VAYA EDIT</p>
+        <h2>Elegance, without trying too hard.</h2>
+        <p>اختيارات هادئة، قصّات مرتبة، وتفاصيل بتخلي القطعة تحكي عنكِ.</p>
+        <button class="btn dark" data-scroll="#shop">شاهدي المجموعة</button>
+      </div>
+    </section>
+
+    <section class="section" id="offers">
+      <div class="offer">
+        <div><p class="eyebrow">LIMITED EDIT</p><h2>خصومات مختارة حتى 30%</h2><p>على مجموعة من القطع المختارة لفترة محدودة.</p></div>
+        <button class="btn light" data-filter-sale>تسوّقي العروض</button>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <p class="eyebrow">VAYA NOTES</p>
+      <h2>خليكِ أول وحدة تعرف</h2>
+      <p>اشتركي ليصلك الجديد والعروض قبل الكل.</p>
+      <form id="newsletterForm">
+        <input type="email" required placeholder="البريد الإلكتروني">
+        <button type="submit">اشتراك</button>
+      </form>
+      <small id="newsletterMsg"></small>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div><a class="brand footer-brand" href="#home">VAYA</a><p>أسلوب عصري، اختيارات أذكى، وتفاصيل بتشبهك.</p></div>
+      <div><h4>تسوّقي</h4><a href="#shop" data-footer-category="women">نسائي</a><a href="#shop" data-footer-category="men">رجالي</a><a href="#shop" data-footer-category="girls">بنات</a><a href="#shop" data-footer-category="boys">أولاد</a></div>
+      <div><h4>المساعدة</h4><a href="#">الشحن والتوصيل</a><a href="#">الاستبدال والإرجاع</a><a href="#">الأسئلة الشائعة</a><a href="#">تواصل معنا</a></div>
+      <div><h4>تابعينا</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Facebook</a></div>
+    </div>
+    <div class="container copyright">© 2026 VAYA — All Rights Reserved.</div>
+  </footer>
+
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="drawer" id="cartDrawer">
+    <div class="drawer-head"><h3>سلة التسوق</h3><button class="close" data-close="cartDrawer">×</button></div>
+    <div id="cartItems" class="drawer-body"></div>
+    <div class="drawer-foot"><div><span>المجموع</span><strong id="cartTotal">0.00 د.أ</strong></div><button class="btn dark full" id="checkoutBtn">إتمام الطلب</button></div>
+  </aside>
+
+  <aside class="drawer" id="favDrawer">
+    <div class="drawer-head"><h3>المفضلة</h3><button class="close" data-close="favDrawer">×</button></div>
+    <div id="favItems" class="drawer-body"></div>
+  </aside>
+
+  <div class="modal" id="productModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" data-close="productModal">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
 </body>
 </html>
