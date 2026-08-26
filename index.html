@@ -1,996 +1,1548 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>VAYA | Modern Store</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --black: #111111;
-      --dark: #1b1b1b;
-      --cream: #f7f3ed;
-      --white: #ffffff;
-      --gray: #777;
-      --border: #e8e3dc;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--black);
-      background: var(--cream);
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    button {
-      font-family: inherit;
-      cursor: pointer;
-    }
-
-    /* NAVBAR */
-
-    header {
-      background: var(--cream);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .navbar {
-      max-width: 1250px;
-      margin: auto;
-      height: 78px;
-      padding: 0 25px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: 5px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 35px;
-      list-style: none;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .nav-links a {
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      opacity: 0.5;
-    }
-
-    .nav-actions {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .icon-btn {
-      background: none;
-      border: none;
-      font-size: 20px;
-      position: relative;
-    }
-
-    .cart-count {
-      position: absolute;
-      top: -9px;
-      right: -10px;
-      background: var(--black);
-      color: white;
-      font-size: 10px;
-      width: 17px;
-      height: 17px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* HERO */
-
-    .hero {
-      min-height: 650px;
-      max-width: 1250px;
-      margin: auto;
-      padding: 70px 25px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 50px;
-    }
-
-    .hero-text small {
-      letter-spacing: 4px;
-      font-size: 12px;
-      color: var(--gray);
-    }
-
-    .hero-text h1 {
-      font-size: clamp(55px, 8vw, 105px);
-      line-height: 0.9;
-      margin: 25px 0;
-      letter-spacing: -5px;
-    }
-
-    .hero-text p {
-      max-width: 450px;
-      color: #666;
-      line-height: 1.8;
-      font-size: 15px;
-      margin-bottom: 30px;
-    }
-
-    .primary-btn {
-      border: none;
-      background: var(--black);
-      color: white;
-      padding: 16px 32px;
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      transition: 0.3s;
-    }
-
-    .primary-btn:hover {
-      background: #333;
-      transform: translateY(-2px);
-    }
-
-    .hero-image {
-      height: 530px;
-      background:
-        linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)),
-        radial-gradient(circle at 50% 40%, #ded8d0, #b8afa4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-image::before {
-      content: "V";
-      position: absolute;
-      font-size: 500px;
-      font-weight: 900;
-      color: rgba(255,255,255,0.15);
-      line-height: 1;
-    }
-
-    .hero-product {
-      width: 280px;
-      height: 390px;
-      background: linear-gradient(145deg, #222, #555);
-      border-radius: 150px 150px 30px 30px;
-      box-shadow: 30px 35px 60px rgba(0,0,0,0.25);
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-product::after {
-      content: "VAYA";
-      position: absolute;
-      color: white;
-      letter-spacing: 7px;
-      font-size: 20px;
-      font-weight: bold;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    /* CATEGORIES */
-
-    .categories {
-      background: var(--white);
-      padding: 90px 25px;
-    }
-
-    .section-title {
-      max-width: 1200px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .section-title span {
-      color: var(--gray);
-      font-size: 12px;
-      letter-spacing: 4px;
-    }
-
-    .section-title h2 {
-      font-size: 42px;
-      margin: 12px 0 45px;
-    }
-
-    .category-grid {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .category {
-      height: 350px;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: end;
-      padding: 30px;
-      color: white;
-      background: linear-gradient(145deg, #303030, #999);
-      transition: 0.4s;
-    }
-
-    .category:nth-child(2) {
-      background: linear-gradient(145deg, #b6a38d, #55483d);
-    }
-
-    .category:nth-child(3) {
-      background: linear-gradient(145deg, #dadada, #777);
-    }
-
-    .category:hover {
-      transform: translateY(-7px);
-    }
-
-    .category h3 {
-      font-size: 30px;
-    }
-
-    /* PRODUCTS */
-
-    .products {
-      padding: 100px 25px;
-      max-width: 1250px;
-      margin: auto;
-    }
-
-    .products-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      margin-bottom: 40px;
-    }
-
-    .products-header h2 {
-      font-size: 42px;
-    }
-
-    .products-header p {
-      color: var(--gray);
-      font-size: 14px;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .product-card {
-      background: white;
-      overflow: hidden;
-      transition: 0.3s;
-    }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .product-image {
-      height: 320px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #e9e5df;
-      position: relative;
-    }
-
-    .product-card:nth-child(2) .product-image {
-      background: #d8d1c7;
-    }
-
-    .product-card:nth-child(3) .product-image {
-      background: #c9c9c9;
-    }
-
-    .product-card:nth-child(4) .product-image {
-      background: #b9afa4;
-    }
-
-    .product-shape {
-      width: 125px;
-      height: 190px;
-      background: linear-gradient(135deg, #191919, #555);
-      border-radius: 70px 70px 15px 15px;
-      box-shadow: 15px 20px 35px rgba(0,0,0,0.2);
-    }
-
-    .product-card:nth-child(2) .product-shape {
-      width: 170px;
-      height: 100px;
-      border-radius: 15px;
-    }
-
-    .product-card:nth-child(3) .product-shape {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-    }
-
-    .product-card:nth-child(4) .product-shape {
-      width: 120px;
-      height: 210px;
-      border-radius: 20px;
-    }
-
-    .product-info {
-      padding: 20px;
-    }
-
-    .product-info h3 {
-      font-size: 15px;
-      margin-bottom: 8px;
-    }
-
-    .product-info p {
-      color: var(--gray);
-      font-size: 13px;
-    }
-
-    .price {
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    .add-cart {
-      margin-top: 15px;
-      width: 100%;
-      border: 1px solid var(--black);
-      background: transparent;
-      padding: 11px;
-      font-size: 12px;
-      transition: 0.3s;
-    }
-
-    .add-cart:hover {
-      background: var(--black);
-      color: white;
-    }
-
-    /* BANNER */
-
-    .banner {
-      background: var(--black);
-      color: white;
-      padding: 100px 25px;
-      text-align: center;
-    }
-
-    .banner span {
-      font-size: 12px;
-      letter-spacing: 5px;
-      opacity: 0.6;
-    }
-
-    .banner h2 {
-      font-size: clamp(45px, 7vw, 85px);
-      margin: 20px 0;
-      letter-spacing: -4px;
-    }
-
-    .banner p {
-      max-width: 500px;
-      margin: auto;
-      color: #aaa;
-      line-height: 1.7;
-    }
-
-    .white-btn {
-      margin-top: 30px;
-      padding: 15px 30px;
-      border: none;
-      background: white;
-      color: black;
-      font-weight: bold;
-    }
-
-    /* FOOTER */
-
-    footer {
-      background: #111;
-      color: white;
-      padding: 70px 25px 30px;
-      border-top: 1px solid #333;
-    }
-
-    .footer-grid {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 50px;
-    }
-
-    .footer-logo {
-      font-size: 30px;
-      font-weight: bold;
-      letter-spacing: 5px;
-      margin-bottom: 20px;
-    }
-
-    .footer-about {
-      color: #999;
-      line-height: 1.7;
-      max-width: 350px;
-      font-size: 14px;
-    }
-
-    footer h4 {
-      margin-bottom: 20px;
-      font-size: 13px;
-      letter-spacing: 1px;
-    }
-
-    footer ul {
-      list-style: none;
-    }
-
-    footer li {
-      margin-bottom: 12px;
-      color: #999;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    footer li:hover {
-      color: white;
-    }
-
-    .copyright {
-      max-width: 1200px;
-      margin: 60px auto 0;
-      padding-top: 25px;
-      border-top: 1px solid #333;
-      color: #666;
-      font-size: 12px;
-    }
-
-    /* CART */
-
-    .cart-panel {
-      position: fixed;
-      top: 0;
-      right: -400px;
-      width: 380px;
-      max-width: 90%;
-      height: 100vh;
-      background: white;
-      z-index: 2000;
-      padding: 30px;
-      box-shadow: -10px 0 40px rgba(0,0,0,0.15);
-      transition: 0.4s;
-    }
-
-    .cart-panel.active {
-      right: 0;
-    }
-
-    .cart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 40px;
-    }
-
-    .cart-header h2 {
-      font-size: 24px;
-    }
-
-    .close-cart {
-      border: none;
-      background: none;
-      font-size: 25px;
-    }
-
-    .cart-items {
-      min-height: 200px;
-      color: #777;
-      font-size: 14px;
-    }
-
-    .cart-total {
-      border-top: 1px solid var(--border);
-      padding-top: 20px;
-      margin-top: 30px;
-      display: flex;
-      justify-content: space-between;
-      font-weight: bold;
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 900px) {
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-image {
-        height: 450px;
-      }
-
-      .category-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 550px) {
-
-      .navbar {
-        height: 65px;
-      }
-
-      .logo {
-        font-size: 24px;
-      }
-
-      .hero {
-        padding-top: 50px;
-      }
-
-      .hero-text h1 {
-        font-size: 65px;
-      }
-
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .products-header {
-        display: block;
-      }
-
-      .products-header h2 {
-        margin-bottom: 10px;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cart-panel {
-        width: 100%;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VAYA — Discover Your Style</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'DM Sans',sans-serif;
+background:#f8f7f4;
+color:#171717;
+}
+
+button,input{
+font-family:inherit;
+}
+
+button{
+cursor:pointer;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+/* TOP BAR */
+
+.topbar{
+background:#171717;
+color:white;
+text-align:center;
+padding:10px;
+font-size:12px;
+letter-spacing:1px;
+}
+
+/* NAVBAR */
+
+.navbar{
+height:78px;
+background:rgba(248,247,244,.96);
+backdrop-filter:blur(12px);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 5%;
+position:sticky;
+top:0;
+z-index:1000;
+border-bottom:1px solid #e9e5df;
+}
+
+.logo{
+font-size:30px;
+font-weight:700;
+letter-spacing:6px;
+}
+
+.nav-links{
+display:flex;
+gap:35px;
+list-style:none;
+font-size:13px;
+font-weight:600;
+}
+
+.nav-links a:hover{
+opacity:.5;
+}
+
+.nav-icons{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.nav-icon{
+border:0;
+background:none;
+font-size:20px;
+position:relative;
+}
+
+.badge{
+position:absolute;
+right:-7px;
+top:-7px;
+background:#171717;
+color:white;
+width:18px;
+height:18px;
+border-radius:50%;
+font-size:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* HERO */
+
+.hero{
+min-height:680px;
+display:grid;
+grid-template-columns:45% 55%;
+background:#ebe6df;
+}
+
+.hero-content{
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:8%;
+}
+
+.hero-label{
+font-size:12px;
+letter-spacing:4px;
+margin-bottom:25px;
+color:#666;
+}
+
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:clamp(60px,7vw,105px);
+font-weight:500;
+line-height:.9;
+letter-spacing:-4px;
+}
+
+.hero h1 span{
+font-style:italic;
+}
+
+.hero-text{
+margin:30px 0;
+max-width:430px;
+line-height:1.8;
+color:#666;
+font-size:15px;
+}
+
+.hero-buttons{
+display:flex;
+gap:12px;
+}
+
+.btn{
+padding:16px 30px;
+border:1px solid #171717;
+font-size:12px;
+font-weight:700;
+letter-spacing:1px;
+transition:.3s;
+}
+
+.btn-dark{
+background:#171717;
+color:white;
+}
+
+.btn-dark:hover{
+background:#444;
+transform:translateY(-2px);
+}
+
+.btn-light{
+background:transparent;
+}
+
+.btn-light:hover{
+background:white;
+}
+
+.hero-image{
+min-height:680px;
+background-image:url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=90");
+background-size:cover;
+background-position:center;
+position:relative;
+}
+
+.hero-tag{
+position:absolute;
+bottom:35px;
+left:35px;
+background:white;
+padding:15px 20px;
+font-size:12px;
+letter-spacing:1px;
+}
+
+/* MARQUEE */
+
+.marquee{
+background:#171717;
+color:white;
+overflow:hidden;
+white-space:nowrap;
+padding:16px 0;
+font-size:12px;
+letter-spacing:3px;
+}
+
+.marquee-track{
+display:inline-block;
+animation:move 20s linear infinite;
+}
+
+.marquee span{
+margin:0 35px;
+}
+
+@keyframes move{
+from{transform:translateX(0)}
+to{transform:translateX(-30%)}
+}
+
+/* SECTION */
+
+.section{
+max-width:1300px;
+margin:auto;
+padding:100px 5%;
+}
+
+.section-head{
+display:flex;
+justify-content:space-between;
+align-items:end;
+margin-bottom:45px;
+}
+
+.section-label{
+font-size:11px;
+letter-spacing:3px;
+color:#777;
+}
+
+.section-title{
+font-family:'Playfair Display',serif;
+font-size:52px;
+font-weight:500;
+margin-top:8px;
+}
+
+.view-all{
+font-size:12px;
+border-bottom:1px solid #171717;
+padding-bottom:5px;
+}
+
+/* CATEGORIES */
+
+.categories{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+}
+
+.category{
+height:330px;
+position:relative;
+overflow:hidden;
+background:#ddd;
+}
+
+.category img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.6s;
+}
+
+.category:hover img{
+transform:scale(1.06);
+}
+
+.category-info{
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+padding:25px;
+color:white;
+background:linear-gradient(transparent,rgba(0,0,0,.65));
+}
+
+.category-info h3{
+font-family:'Playfair Display',serif;
+font-size:28px;
+}
+
+/* PRODUCTS */
+
+.filters{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:30px;
+}
+
+.filter{
+border:1px solid #ddd7cf;
+background:transparent;
+padding:10px 18px;
+font-size:12px;
+transition:.3s;
+}
+
+.filter.active,
+.filter:hover{
+background:#171717;
+color:white;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:22px;
+}
+
+.product{
+position:relative;
+}
+
+.product-image{
+height:390px;
+background:#eee;
+position:relative;
+overflow:hidden;
+}
+
+.product-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.6s;
+}
+
+.product:hover .product-image img{
+transform:scale(1.05);
+}
+
+.product-heart{
+position:absolute;
+top:15px;
+right:15px;
+background:white;
+border:0;
+width:38px;
+height:38px;
+border-radius:50%;
+font-size:18px;
+z-index:2;
+}
+
+.product-label{
+position:absolute;
+top:15px;
+left:15px;
+background:#171717;
+color:white;
+padding:7px 11px;
+font-size:10px;
+letter-spacing:1px;
+z-index:2;
+}
+
+.quick-add{
+position:absolute;
+bottom:-60px;
+left:15px;
+right:15px;
+background:white;
+border:0;
+padding:16px;
+font-size:11px;
+font-weight:700;
+letter-spacing:1px;
+transition:.3s;
+}
+
+.product:hover .quick-add{
+bottom:15px;
+}
+
+.product-info{
+padding:16px 3px;
+}
+
+.product-name{
+font-size:14px;
+font-weight:600;
+}
+
+.product-category{
+font-size:12px;
+color:#888;
+margin:6px 0;
+}
+
+.product-bottom{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:10px;
+}
+
+.price{
+font-weight:700;
+font-size:14px;
+}
+
+.stars{
+font-size:11px;
+letter-spacing:1px;
+}
+
+/* FEATURE BANNER */
+
+.feature{
+max-width:1300px;
+margin:auto;
+padding:0 5% 100px;
+}
+
+.feature-box{
+min-height:550px;
+background-image:
+linear-gradient(90deg,rgba(0,0,0,.7),rgba(0,0,0,.05)),
+url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=90");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+padding:8%;
+color:white;
+}
+
+.feature-content{
+max-width:500px;
+}
+
+.feature-content small{
+letter-spacing:4px;
+font-size:11px;
+}
+
+.feature-content h2{
+font-family:'Playfair Display',serif;
+font-size:65px;
+font-weight:500;
+line-height:1;
+margin:20px 0;
+}
+
+.feature-content p{
+line-height:1.7;
+color:#ddd;
+margin-bottom:25px;
+}
+
+/* NEWSLETTER */
+
+.newsletter{
+background:#e9e4dc;
+padding:90px 5%;
+text-align:center;
+}
+
+.newsletter h2{
+font-family:'Playfair Display',serif;
+font-size:50px;
+font-weight:500;
+}
+
+.newsletter p{
+color:#777;
+margin:15px auto 30px;
+max-width:500px;
+line-height:1.7;
+}
+
+.email-box{
+max-width:500px;
+margin:auto;
+display:flex;
+border-bottom:1px solid #171717;
+}
+
+.email-box input{
+flex:1;
+background:transparent;
+border:0;
+padding:15px 5px;
+outline:none;
+}
+
+.email-box button{
+border:0;
+background:transparent;
+font-weight:bold;
+}
+
+/* FOOTER */
+
+footer{
+background:#171717;
+color:white;
+padding:80px 5% 30px;
+}
+
+.footer-grid{
+max-width:1300px;
+margin:auto;
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:60px;
+}
+
+.footer-logo{
+font-size:32px;
+letter-spacing:6px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.footer-about{
+color:#888;
+max-width:330px;
+line-height:1.8;
+font-size:13px;
+}
+
+footer h4{
+font-size:12px;
+letter-spacing:2px;
+margin-bottom:22px;
+}
+
+footer li{
+list-style:none;
+color:#888;
+font-size:13px;
+margin-bottom:13px;
+}
+
+footer li:hover{
+color:white;
+}
+
+.copyright{
+max-width:1300px;
+margin:60px auto 0;
+border-top:1px solid #333;
+padding-top:25px;
+color:#666;
+font-size:11px;
+}
+
+/* CART */
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.4);
+z-index:1999;
+display:none;
+}
+
+.overlay.active{
+display:block;
+}
+
+.cart{
+position:fixed;
+right:-450px;
+top:0;
+height:100vh;
+width:420px;
+max-width:95%;
+background:#fff;
+z-index:2000;
+padding:30px;
+transition:.4s;
+display:flex;
+flex-direction:column;
+}
+
+.cart.active{
+right:0;
+}
+
+.cart-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #eee;
+padding-bottom:20px;
+}
+
+.cart-head h2{
+font-family:'Playfair Display',serif;
+font-size:30px;
+font-weight:500;
+}
+
+.close{
+border:0;
+background:none;
+font-size:25px;
+}
+
+.cart-items{
+flex:1;
+overflow:auto;
+padding:20px 0;
+}
+
+.empty{
+text-align:center;
+color:#999;
+margin-top:80px;
+}
+
+.cart-item{
+display:flex;
+gap:15px;
+padding:15px 0;
+border-bottom:1px solid #eee;
+}
+
+.cart-item img{
+width:75px;
+height:90px;
+object-fit:cover;
+}
+
+.cart-item-info{
+flex:1;
+}
+
+.cart-item-name{
+font-size:13px;
+font-weight:600;
+}
+
+.cart-item-price{
+font-size:12px;
+color:#777;
+margin-top:8px;
+}
+
+.remove{
+border:0;
+background:none;
+color:#999;
+font-size:11px;
+margin-top:10px;
+}
+
+.cart-footer{
+border-top:1px solid #eee;
+padding-top:20px;
+}
+
+.total{
+display:flex;
+justify-content:space-between;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.checkout{
+width:100%;
+background:#171717;
+color:white;
+border:0;
+padding:17px;
+font-size:12px;
+font-weight:700;
+letter-spacing:1px;
+}
+
+/* SEARCH */
+
+.search-box{
+position:fixed;
+inset:0;
+background:rgba(248,247,244,.98);
+z-index:3000;
+display:none;
+align-items:center;
+justify-content:center;
+padding:30px;
+}
+
+.search-box.active{
+display:flex;
+}
+
+.search-inner{
+width:700px;
+}
+
+.search-inner input{
+width:100%;
+border:0;
+border-bottom:2px solid #171717;
+background:transparent;
+font-size:35px;
+padding:20px 0;
+outline:none;
+}
+
+.close-search{
+position:absolute;
+right:40px;
+top:30px;
+background:none;
+border:0;
+font-size:30px;
+}
+
+/* MOBILE */
+
+.mobile-menu{
+display:none;
+}
+
+@media(max-width:1000px){
+
+.products{
+grid-template-columns:repeat(2,1fr);
+}
+
+.categories{
+grid-template-columns:repeat(2,1fr);
+}
+
+.hero{
+grid-template-columns:1fr;
+}
+
+.hero-image{
+min-height:550px;
+}
+
+.footer-grid{
+grid-template-columns:1fr 1fr;
+}
+
+}
+
+@media(max-width:650px){
+
+.nav-links{
+display:none;
+}
+
+.mobile-menu{
+display:block;
+border:0;
+background:none;
+font-size:22px;
+}
+
+.navbar{
+padding:0 20px;
+}
+
+.hero-content{
+padding:60px 25px;
+}
+
+.hero h1{
+font-size:65px;
+}
+
+.hero-image{
+min-height:500px;
+}
+
+.categories,
+.products{
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.category{
+height:250px;
+}
+
+.product-image{
+height:280px;
+}
+
+.section{
+padding:70px 20px;
+}
+
+.section-title{
+font-size:40px;
+}
+
+.section-head{
+display:block;
+}
+
+.view-all{
+display:inline-block;
+margin-top:15px;
+}
+
+.feature{
+padding:0 20px 70px;
+}
+
+.feature-box{
+min-height:500px;
+}
+
+.feature-content h2{
+font-size:48px;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:430px){
+
+.categories,
+.products{
+grid-template-columns:1fr;
+}
+
+.product-image{
+height:390px;
+}
+
+}
+</style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
+<div class="topbar">
+FREE SHIPPING ON ORDERS OVER 50 JOD · WELCOME TO VAYA
+</div>
 
-  <header>
-    <nav class="navbar">
+<nav class="navbar">
 
-      <a href="#" class="logo">VAYA</a>
+<button class="mobile-menu">☰</button>
 
-      <ul class="nav-links">
-        <li><a href="#home">HOME</a></li>
-        <li><a href="#shop">SHOP</a></li>
-        <li><a href="#collections">COLLECTIONS</a></li>
-        <li><a href="#about">ABOUT</a></li>
-      </ul>
+<a class="logo" href="#">VAYA</a>
 
-      <div class="nav-actions">
+<ul class="nav-links">
+<li><a href="#new">NEW IN</a></li>
+<li><a href="#shop">SHOP</a></li>
+<li><a href="#collections">COLLECTIONS</a></li>
+<li><a href="#story">OUR STORY</a></li>
+</ul>
 
-        <button class="icon-btn" onclick="openCart()">
-          🛒
-          <span class="cart-count" id="cartCount">0</span>
-        </button>
+<div class="nav-icons">
 
-      </div>
+<button class="nav-icon" onclick="openSearch()">⌕</button>
 
-    </nav>
-  </header>
+<button class="nav-icon" onclick="openCart()">
+♡
+<span class="badge">0</span>
+</button>
 
+<button class="nav-icon" onclick="openCart()">
+🛍
+<span class="badge" id="cartCount">0</span>
+</button>
 
-  <!-- HERO -->
+</div>
 
-  <main>
+</nav>
 
-    <section class="hero" id="home">
 
-      <div class="hero-text">
+<section class="hero">
 
-        <small>WELCOME TO VAYA</small>
+<div class="hero-content">
 
-        <h1>DEFINE<br>YOUR<br>STYLE.</h1>
+<div class="hero-label">
+VAYA AUTUMN / WINTER 2026
+</div>
 
-        <p>
-          Discover a carefully selected collection designed
-          for people who appreciate simplicity, quality and
-          modern style.
-        </p>
+<h1>
+Wear<br>
+your <span>story.</span>
+</h1>
 
-        <a href="#shop">
-          <button class="primary-btn">
-            SHOP NOW →
-          </button>
-        </a>
+<p class="hero-text">
+Modern pieces designed for everyday life.
+Discover VAYA's newest collection — timeless,
+effortless and made to be yours.
+</p>
 
-      </div>
+<div class="hero-buttons">
 
-      <div class="hero-image">
-        <div class="hero-product"></div>
-      </div>
+<a href="#shop">
+<button class="btn btn-dark">SHOP COLLECTION</button>
+</a>
 
-    </section>
+<a href="#new">
+<button class="btn btn-light">EXPLORE NEW IN</button>
+</a>
 
+</div>
 
-    <!-- COLLECTIONS -->
+</div>
 
-    <section class="categories" id="collections">
+<div class="hero-image">
 
-      <div class="section-title">
+<div class="hero-tag">
+NEW COLLECTION · 2026
+</div>
 
-        <span>EXPLORE VAYA</span>
+</div>
 
-        <h2>Our Collections</h2>
+</section>
 
-      </div>
 
-      <div class="category-grid">
+<div class="marquee">
 
-        <div class="category">
-          <h3>Essentials</h3>
-        </div>
+<div class="marquee-track">
 
-        <div class="category">
-          <h3>New Arrivals</h3>
-        </div>
+<span>VAYA</span>
+<span>NEW COLLECTION</span>
+<span>FREE SHIPPING</span>
+<span>DESIGNED FOR YOU</span>
+<span>VAYA</span>
+<span>NEW COLLECTION</span>
+<span>FREE SHIPPING</span>
+<span>DESIGNED FOR YOU</span>
 
-        <div class="category">
-          <h3>Best Sellers</h3>
-        </div>
+</div>
 
-      </div>
+</div>
 
-    </section>
 
+<section class="section" id="collections">
 
-    <!-- PRODUCTS -->
+<div class="section-head">
 
-    <section class="products" id="shop">
+<div>
+<div class="section-label">SHOP BY CATEGORY</div>
+<h2 class="section-title">Find your VAYA</h2>
+</div>
 
-      <div class="products-header">
+<a href="#shop" class="view-all">VIEW ALL →</a>
 
-        <div>
-          <p>CURATED FOR YOU</p>
-          <h2>Featured</h2>
-        </div>
+</div>
 
-        <p>Simple. Modern. VAYA.</p>
+<div class="categories">
 
-      </div>
+<div class="category">
+<img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=85">
+<div class="category-info">
+<h3>Women</h3>
+</div>
+</div>
 
+<div class="category">
+<img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=700&q=85">
+<div class="category-info">
+<h3>Men</h3>
+</div>
+</div>
 
-      <div class="product-grid">
+<div class="category">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=85">
+<div class="category-info">
+<h3>Shoes</h3>
+</div>
+</div>
 
-        <div class="product-card">
+<div class="category">
+<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=85">
+<div class="category-info">
+<h3>Accessories</h3>
+</div>
+</div>
 
-          <div class="product-image">
-            <div class="product-shape"></div>
-          </div>
+</div>
 
-          <div class="product-info">
-            <h3>VAYA Essential</h3>
-            <p>Signature Collection</p>
-            <div class="price">25 JOD</div>
+</section>
 
-            <button class="add-cart"
-              onclick="addToCart('VAYA Essential', 25)">
-              ADD TO CART
-            </button>
-          </div>
 
-        </div>
+<section class="section" id="new">
 
+<div class="section-head">
 
-        <div class="product-card">
+<div>
+<div class="section-label">JUST DROPPED</div>
+<h2 class="section-title">New arrivals</h2>
+</div>
 
-          <div class="product-image">
-            <div class="product-shape"></div>
-          </div>
+<a href="#shop" class="view-all">VIEW ALL →</a>
 
-          <div class="product-info">
-            <h3>VAYA Classic</h3>
-            <p>Everyday Collection</p>
-            <div class="price">32 JOD</div>
+</div>
 
-            <button class="add-cart"
-              onclick="addToCart('VAYA Classic', 32)">
-              ADD TO CART
-            </button>
-          </div>
+<div class="filters">
 
-        </div>
+<button class="filter active" onclick="filterProducts('all',this)">ALL</button>
+<button class="filter" onclick="filterProducts('women',this)">WOMEN</button>
+<button class="filter" onclick="filterProducts('men',this)">MEN</button>
+<button class="filter" onclick="filterProducts('shoes',this)">SHOES</button>
+<button class="filter" onclick="filterProducts('accessories',this)">ACCESSORIES</button>
 
+</div>
 
-        <div class="product-card">
+<div class="products" id="products"></div>
 
-          <div class="product-image">
-            <div class="product-shape"></div>
-          </div>
+</section>
 
-          <div class="product-info">
-            <h3>VAYA Signature</h3>
-            <p>Premium Collection</p>
-            <div class="price">45 JOD</div>
 
-            <button class="add-cart"
-              onclick="addToCart('VAYA Signature', 45)">
-              ADD TO CART
-            </button>
-          </div>
+<section class="feature" id="story">
 
-        </div>
+<div class="feature-box">
 
+<div class="feature-content">
 
-        <div class="product-card">
+<small>THE VAYA EDIT</small>
 
-          <div class="product-image">
-            <div class="product-shape"></div>
-          </div>
+<h2>
+Made for<br>
+every day.
+</h2>
 
-          <div class="product-info">
-            <h3>VAYA Edition</h3>
-            <p>Limited Collection</p>
-            <div class="price">55 JOD</div>
+<p>
+We believe your everyday wardrobe should feel
+special. Simple silhouettes, thoughtful details
+and pieces you'll want to wear again and again.
+</p>
 
-            <button class="add-cart"
-              onclick="addToCart('VAYA Edition', 55)">
-              ADD TO CART
-            </button>
-          </div>
+<button class="btn btn-light">
+DISCOVER OUR STORY
+</button>
 
-        </div>
+</div>
 
-      </div>
+</div>
 
-    </section>
+</section>
 
 
-    <!-- BANNER -->
+<section class="newsletter">
 
-    <section class="banner" id="about">
+<h2>Stay in the VAYA loop.</h2>
 
-      <span>THE VAYA PHILOSOPHY</span>
+<p>
+Get early access to new drops, exclusive offers
+and everything happening at VAYA.
+</p>
 
-      <h2>LESS, BUT BETTER.</h2>
+<div class="email-box">
 
-      <p>
-        VAYA is built around a simple idea:
-        great design doesn't need to be complicated.
-        We create products that fit your lifestyle
-        and stay timeless.
-      </p>
+<input type="email" placeholder="Your email address">
 
-      <button class="white-btn">
-        DISCOVER VAYA
-      </button>
+<button onclick="subscribe()">
+JOIN →
+</button>
 
-    </section>
+</div>
 
-  </main>
+</section>
 
 
-  <!-- FOOTER -->
+<footer>
 
-  <footer>
+<div class="footer-grid">
 
-    <div class="footer-grid">
+<div>
 
-      <div>
+<div class="footer-logo">VAYA</div>
 
-        <div class="footer-logo">VAYA</div>
+<p class="footer-about">
+A modern lifestyle brand built around
+style, simplicity and confidence.
+Made for the way you live.
+</p>
 
-        <p class="footer-about">
-          A modern Jordanian-inspired brand focused
-          on quality, simplicity and timeless design.
-        </p>
+</div>
 
-      </div>
+<div>
 
+<h4>SHOP</h4>
 
-      <div>
+<ul>
+<li>New Arrivals</li>
+<li>Women</li>
+<li>Men</li>
+<li>Shoes</li>
+<li>Accessories</li>
+</ul>
 
-        <h4>SHOP</h4>
+</div>
 
-        <ul>
-          <li>New Arrivals</li>
-          <li>Best Sellers</li>
-          <li>Collections</li>
-          <li>Sale</li>
-        </ul>
+<div>
 
-      </div>
+<h4>HELP</h4>
 
+<ul>
+<li>Contact Us</li>
+<li>Shipping & Delivery</li>
+<li>Returns</li>
+<li>FAQ</li>
+</ul>
 
-      <div>
+</div>
 
-        <h4>HELP</h4>
+<div>
 
-        <ul>
-          <li>Contact Us</li>
-          <li>Shipping</li>
-          <li>Returns</li>
-          <li>FAQ</li>
-        </ul>
+<h4>FOLLOW</h4>
 
-      </div>
+<ul>
+<li>Instagram</li>
+<li>TikTok</li>
+<li>Facebook</li>
+<li>Pinterest</li>
+</ul>
 
+</div>
 
-      <div>
+</div>
 
-        <h4>FOLLOW</h4>
+<div class="copyright">
+© 2026 VAYA. All Rights Reserved.
+</div>
 
-        <ul>
-          <li>Instagram</li>
-          <li>TikTok</li>
-          <li>Facebook</li>
-        </ul>
+</footer>
 
-      </div>
 
-    </div>
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
 
+<div class="cart" id="cart">
 
-    <div class="copyright">
-      © 2026 VAYA. All Rights Reserved.
-    </div>
+<div class="cart-head">
 
-  </footer>
+<h2>Your Bag</h2>
 
+<button class="close" onclick="closeCart()">×</button>
 
-  <!-- CART -->
+</div>
 
-  <div class="cart-panel" id="cartPanel">
+<div class="cart-items" id="cartItems">
 
-    <div class="cart-header">
+<div class="empty">
+Your bag is waiting for something beautiful.
+</div>
 
-      <h2>Your Cart</h2>
+</div>
 
-      <button class="close-cart" onclick="closeCart()">
-        ×
-      </button>
+<div class="cart-footer">
 
-    </div>
+<div class="total">
+<span>Total</span>
+<span id="cartTotal">0 JOD</span>
+</div>
 
-    <div class="cart-items" id="cartItems">
-      Your cart is empty.
-    </div>
+<button class="checkout">
+PROCEED TO CHECKOUT
+</button>
 
-    <div class="cart-total">
+</div>
 
-      <span>Total</span>
+</div>
 
-      <span id="cartTotal">0 JOD</span>
 
-    </div>
+<div class="search-box" id="searchBox">
 
-  </div>
+<button class="close-search" onclick="closeSearch()">×</button>
 
+<div class="search-inner">
 
-  <script>
+<input
+id="searchInput"
+placeholder="Search VAYA..."
+onkeyup="searchProducts()">
 
-    let cart = [];
-    let total = 0;
+</div>
 
-    function addToCart(name, price) {
+</div>
 
-      cart.push({
-        name: name,
-        price: price
-      });
 
-      total += price;
+<script>
 
-      document.getElementById("cartCount").innerText = cart.length;
+const products = [
 
-      updateCart();
+{
+name:"VAYA Essential Blazer",
+category:"women",
+price:49,
+rating:"★★★★★",
+image:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=85",
+label:"NEW"
+},
 
-      openCart();
-    }
+{
+name:"Classic Oversized Shirt",
+category:"women",
+price:29,
+rating:"★★★★★",
+image:"https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=700&q=85",
+label:"NEW"
+},
 
+{
+name:"Minimal Leather Jacket",
+category:"men",
+price:65,
+rating:"★★★★★",
+image:"https://images.unsplash.com/photo-1520975958225-9d4a7f0c3c1d?auto=format&fit=crop&w=700&q=85",
+label:"BEST"
+},
 
-    function updateCart() {
+{
+name:"Everyday Denim",
+category:"men",
+price:35,
+rating:"★★★★☆",
+image:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=85",
+label:""
+},
 
-      const cartItems =
-        document.getElementById("cartItems");
+{
+name:"VAYA Runner Sneakers",
+category:"shoes",
+price:55,
+rating:"★★★★★",
+image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=85",
+label:"HOT"
+},
 
-      if (cart.length === 0) {
+{
+name:"Classic White Sneakers",
+category:"shoes",
+price:48,
+rating:"★★★★★",
+image:"https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=700&q=85",
+label:""
+},
 
-        cartItems.innerHTML =
-          "Your cart is empty.";
+{
+name:"Signature Watch",
+category:"accessories",
+price:75,
+rating:"★★★★★",
+image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=85",
+label:"BEST"
+},
 
-      } else {
+{
+name:"Leather Crossbody",
+category:"accessories",
+price:42,
+rating:"★★★★☆",
+image:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=85",
+label:"NEW"
+},
 
-        cartItems.innerHTML = cart
-          .map((item, index) => `
-            <div style="
-              display:flex;
-              justify-content:space-between;
-              padding:15px 0;
-              border-bottom:1px solid #eee;
-            ">
-              <span>${item.name}</span>
+{
+name:"VAYA Knit Sweater",
+category:"women",
+price:39,
+rating:"★★★★★",
+image:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=700&q=85",
+label:""
+},
 
-              <strong>${item.price} JOD</strong>
-            </div>
-          `)
-          .join("");
-      }
+{
+name:"Premium Cotton Tee",
+category:"men",
+price:22,
+rating:"★★★★★",
+image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85",
+label:""
+},
 
-      document.getElementById("cartTotal").innerText =
-        total + " JOD";
-    }
+{
+name:"Soft Shoulder Bag",
+category:"accessories",
+price:45,
+rating:"★★★★★",
+image:"https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=700&q=85",
+label:"NEW"
+},
 
+{
+name:"Urban Runner",
+category:"shoes",
+price:59,
+rating:"★★★★★",
+image:"https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=700&q=85",
+label:""
+}
 
-    function openCart() {
+];
 
-      document
-        .getElementById("cartPanel")
-        .classList.add("active");
+let cart=[];
 
-    }
+function renderProducts(list=products){
 
+const container=document.getElementById("products");
 
-    function closeCart() {
+container.innerHTML=list.map((product,index)=>`
 
-      document
-        .getElementById("cartPanel")
-        .classList.remove("active");
+<div class="product">
 
-    }
+<div class="product-image">
 
-  </script>
+${product.label ? `<div class="product-label">${product.label}</div>`:""}
+
+<button class="product-heart" onclick="wishlist(this)">
+♡
+</button>
+
+<img src="${product.image}" alt="${product.name}">
+
+<button class="quick-add"
+onclick="addToCart(${index})">
+ADD TO BAG · ${product.price} JOD
+</button>
+
+</div>
+
+<div class="product-info">
+
+<div class="product-name">
+${product.name}
+</div>
+
+<div class="product-category">
+${product.category}
+</div>
+
+<div class="product-bottom">
+
+<div class="price">
+${product.price} JOD
+</div>
+
+<div class="stars">
+${product.rating}
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+renderProducts();
+
+
+function filterProducts(category,button){
+
+document.querySelectorAll(".filter")
+.forEach(btn=>btn.classList.remove("active"));
+
+button.classList.add("active");
+
+if(category==="all"){
+renderProducts(products);
+}else{
+renderProducts(
+products.filter(product=>product.category===category)
+);
+}
+
+}
+
+
+function addToCart(index){
+
+cart.push(products[index]);
+
+updateCart();
+
+openCart();
+
+}
+
+
+function updateCart(){
+
+document.getElementById("cartCount").innerText=cart.length;
+
+const items=document.getElementById("cartItems");
+
+if(cart.length===0){
+
+items.innerHTML=`
+<div class="empty">
+Your bag is waiting for something beautiful.
+</div>
+`;
+
+}else{
+
+items.innerHTML=cart.map((item,index)=>`
+
+<div class="cart-item">
+
+<img src="${item.image}">
+
+<div class="cart-item-info">
+
+<div class="cart-item-name">
+${item.name}
+</div>
+
+<div class="cart-item-price">
+${item.price} JOD
+</div>
+
+<button class="remove"
+onclick="removeCart(${index})">
+REMOVE
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+let total=cart.reduce((sum,item)=>sum+item.price,0);
+
+document.getElementById("cartTotal").innerText=total+" JOD";
+
+}
+
+
+function removeCart(index){
+
+cart.splice(index,1);
+
+updateCart();
+
+}
+
+
+function openCart(){
+
+document.getElementById("cart").classList.add("active");
+
+document.getElementById("overlay").classList.add("active");
+
+}
+
+
+function closeCart(){
+
+document.getElementById("cart").classList.remove("active");
+
+document.getElementById("overlay").classList.remove("active");
+
+}
+
+
+function wishlist(button){
+
+if(button.innerText==="♡"){
+
+button.innerText="♥";
+
+}else{
+
+button.innerText="♡";
+
+}
+
+}
+
+
+function openSearch(){
+
+document.getElementById("searchBox")
+.classList.add("active");
+
+document.getElementById("searchInput").focus();
+
+}
+
+
+function closeSearch(){
+
+document.getElementById("searchBox")
+.classList.remove("active");
+
+}
+
+
+function searchProducts(){
+
+const query=
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+const results=products.filter(product=>
+product.name.toLowerCase().includes(query) ||
+product.category.toLowerCase().includes(query)
+);
+
+renderProducts(results);
+
+}
+
+
+function subscribe(){
+
+alert("Welcome to VAYA ✨");
+
+}
+
+</script>
 
 </body>
 </html>
